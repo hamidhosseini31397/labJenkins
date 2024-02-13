@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdventureGame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths</a> &gt; <span class="el_source">AdventureGame.java</span></div><h1>AdventureGame.java</h1><pre class="source lang-java linenums">package se.iths;
+
+
+import java.util.Scanner;
+
+<span class="nc" id="L6">public class AdventureGame {</span>
+<span class="nc" id="L7">    boolean gameOver = false;</span>
+
+    public static void main(String[] args) throws InterruptedException {
+<span class="nc" id="L10">        MenuController menu = new MenuController();</span>
+
+<span class="nc" id="L12">        clearScreen();</span>
+<span class="nc" id="L13">        title();</span>
+        
+<span class="nc" id="L15">        while (true) {</span>
+<span class="nc" id="L16">            mainMenu();</span>
+<span class="nc" id="L17">            menu.selectOption();</span>
+        }
+    }
+
+    public static String inputName(Scanner userInput) {
+<span class="nc" id="L22">        boolean nameEmpty = true;</span>
+<span class="nc" id="L23">        String name = &quot;&quot;;</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        while (nameEmpty) {</span>
+
+<span class="nc" id="L26">            System.out.println(&quot;\nWhat is your name? &quot;);</span>
+<span class="nc" id="L27">            name = userInput.nextLine();</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">            if (name.length() != 0) {</span>
+<span class="nc" id="L29">                nameEmpty = false;</span>
+<span class="nc" id="L30">            } else {</span>
+<span class="nc" id="L31">                System.out.println(&quot;Incorrect input, empty! Please type in a name.&quot;);</span>
+            }
+        }
+<span class="nc" id="L34">        return name;</span>
+    }
+
+    public static void title() throws InterruptedException {
+
+<span class="nc" id="L39">        System.out.print(&quot;PERFECTLY &quot;);</span>
+<span class="nc" id="L40">        Thread.sleep(200);</span>
+<span class="nc" id="L41">        System.out.print(&quot;ACCEPTABLE &quot;);</span>
+<span class="nc" id="L42">        Thread.sleep(200);</span>
+<span class="nc" id="L43">        System.out.print(&quot;ADVENTURE &quot;);</span>
+<span class="nc" id="L44">        Thread.sleep(200);</span>
+<span class="nc" id="L45">        System.out.print(&quot;OF &quot;);</span>
+<span class="nc" id="L46">        Thread.sleep(200);</span>
+<span class="nc" id="L47">        System.out.print(&quot;A &quot;);</span>
+<span class="nc" id="L48">        Thread.sleep(250);</span>
+<span class="nc" id="L49">        System.out.print(&quot;MUNDANE &quot;);</span>
+<span class="nc" id="L50">        Thread.sleep(200);</span>
+<span class="nc" id="L51">        System.out.print(&quot;SOMEBODY&quot;);</span>
+<span class="nc" id="L52">        Thread.sleep(200);</span>
+<span class="nc" id="L53">        System.out.print(&quot;\n                      2023 EDITION&quot;);</span>
+<span class="nc" id="L54">        clearScreen();</span>
+
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        for (int i = 0; i &lt; 20; i++) {</span>
+
+<span class="nc" id="L58">            Thread.sleep(50);</span>
+<span class="nc" id="L59">            System.out.println(&quot;PERFECTLY ACCEPTABLE ADVENTURE OF A MUNDANE SOMEBODY\n                      2023 EDITION&quot;);</span>
+<span class="nc" id="L60">            clearScreen();</span>
+        }
+<span class="nc" id="L62">    }</span>
+
+    public static void trueEndStory() {
+
+<span class="nc" id="L66">        System.out.println(&quot;You win&quot;);</span>
+<span class="nc" id="L67">    }</span>
+
+    public static void clearScreen() {
+
+<span class="nc" id="L71">        System.out.print(&quot;\033[H\033[2J&quot;);</span>
+<span class="nc" id="L72">        System.out.flush();</span>
+<span class="nc" id="L73">    }</span>
+
+    public static void mainMenu() throws InterruptedException {
+        
+<span class="nc" id="L77">        System.out.println(&quot;PERFECTLY ACCEPTABLE ADVENTURE OF A MUNDANE SOMEBODY\n                      2023 EDITION&quot;);</span>
+<span class="nc" id="L78">        Thread.sleep(600);</span>
+<span class="nc" id="L79">        System.out.println(&quot;\nPlease type the number or write one of the choices below.&quot;);</span>
+<span class="nc" id="L80">        Thread.sleep(200);</span>
+<span class="nc" id="L81">        System.out.println(&quot;[1]Start&quot;);</span>
+<span class="nc" id="L82">        Thread.sleep(200);</span>
+<span class="nc" id="L83">        System.out.println(&quot;[2]Help&quot;);</span>
+<span class="nc" id="L84">        Thread.sleep(200);</span>
+<span class="nc" id="L85">        System.out.println(&quot;[3]Quit&quot;);</span>
+<span class="nc" id="L86">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

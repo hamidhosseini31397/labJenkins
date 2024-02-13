@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Monster.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths</a> &gt; <span class="el_source">Monster.java</span></div><h1>Monster.java</h1><pre class="source lang-java linenums">package se.iths;
+
+
+<span class="nc" id="L4">public enum Monster {</span>
+    
+<span class="nc" id="L6">    GOBLIN (&quot;Goblin&quot;, 25, 2, 5, 2, 15, 50, false),</span>
+<span class="nc" id="L7">    WOLF(&quot;Wolf&quot;, 30, 3, 4, 2, 20, 40, false),</span>
+<span class="nc" id="L8">    GNOLL(&quot;Gnoll&quot;, 20, 5, 8, 2, 20, 50, false),</span>
+<span class="nc" id="L9">    ELF(&quot;Elf&quot;, 35, 8, 12, 3, 30, 60, false),</span>
+<span class="nc" id="L10">    ORC(&quot;Orc&quot;, 50, 6, 7, 3, 25, 50, false),</span>
+<span class="nc" id="L11">    DIRE_WOLF(&quot;Dire wolf&quot;, 35, 8, 10, 3, 40, 60, false),</span>
+<span class="nc" id="L12">    GIANT_SPIDER(&quot;Giant spider&quot;, 45, 4, 14, 4, 35, 70, false),</span>
+<span class="nc" id="L13">    BEAR(&quot;Bear&quot;, 55, 8, 12, 4, 30, 70, false),</span>
+<span class="nc" id="L14">    BANDIT(&quot;Bandit&quot;, 50, 10, 15, 5,25, 50, false),</span>
+<span class="nc" id="L15">    OGRE(&quot;Ogre&quot;, 75, 14, 16, 6, 40, 50, false),</span>
+<span class="nc" id="L16">    TROLL(&quot;Troll&quot;, 95, 5, 20, 6, 25, 60, false),</span>
+<span class="nc" id="L17">    WURM(&quot;Wurm&quot;, 70, 12, 15, 6, 45, 50, false),</span>
+<span class="nc" id="L18">    VAMPIRE(&quot;Vampire&quot;, 80, 18, 24, 7, 250, 70, true),</span>
+<span class="nc" id="L19">    WEREWOLF(&quot;Werewolf&quot;, 90, 25, 35, 7, 50, 70, false),</span>
+<span class="nc" id="L20">    DEMON(&quot;Demon&quot;, 120, 20, 40, 8, 80, 80, false),</span>
+<span class="nc" id="L21">    CHIMERA(&quot;Chimera&quot;, 150, 20, 45, 9, 90, 90, false);</span>
+
+    String name;
+    int hp;
+    int minAttack;
+    int maxAttack;
+    int level;
+    int speed;
+    int expGiven;
+    boolean lifesteal;
+
+    public String getName() {
+<span class="nc" id="L33">        return name;</span>
+    }
+
+    public int getHp() {
+<span class="nc" id="L37">        return hp;</span>
+    }
+
+    public int getMinAttack() {
+<span class="nc" id="L41">        return minAttack;</span>
+    }
+
+    public int getMaxAttack() {
+<span class="nc" id="L45">        return maxAttack;</span>
+    }
+
+    public int getLevel() {
+<span class="nc" id="L49">        return level;</span>
+    }
+
+    public int getSpeed() {
+<span class="nc" id="L53">        return speed;</span>
+    }
+
+    public int getExpGiven() {
+<span class="nc" id="L57">        return expGiven;</span>
+    }
+
+    public boolean isLifesteal() {
+<span class="nc" id="L61">        return lifesteal;</span>
+    }
+
+
+<span class="nc" id="L65">    Monster(String name, int hp, int minAttack, int maxAttack, int level, int speed, int expGiven, boolean lifesteal) {</span>
+<span class="nc" id="L66">        this.name = name;</span>
+<span class="nc" id="L67">        this.hp = hp;</span>
+<span class="nc" id="L68">        this.minAttack = minAttack;</span>
+<span class="nc" id="L69">        this.maxAttack = maxAttack;</span>
+<span class="nc" id="L70">        this.level = level;</span>
+<span class="nc" id="L71">        this.speed = speed;</span>
+<span class="nc" id="L72">        this.expGiven = expGiven;</span>
+<span class="nc" id="L73">        this.lifesteal = lifesteal;</span>
+<span class="nc" id="L74">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

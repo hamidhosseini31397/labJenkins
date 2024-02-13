@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbandonedMinesEvent.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths.allEvent</a> &gt; <span class="el_source">AbandonedMinesEvent.java</span></div><h1>AbandonedMinesEvent.java</h1><pre class="source lang-java linenums">package se.iths.allEvent;
+
+import se.iths.*;
+
+public class AbandonedMinesEvent extends Event {
+    
+boolean isAlive;
+
+    public AbandonedMinesEvent() {
+<span class="nc" id="L10">    super();</span>
+<span class="nc" id="L11">    this.eventLevel = 5;</span>
+<span class="nc" id="L12">}</span>
+
+@Override
+public void execute(Player player, InputHandler inputHandler) {
+
+<span class="nc" id="L17">    boolean swamp = true;</span>
+<span class="nc bnc" id="L18" title="All 2 branches missed.">    while (swamp){</span>
+
+<span class="nc" id="L20">    System.out.println(&quot;The path takes you through a forest and while traversing it a glint of sunlight reflecting from an unusual object catches your attention. &quot; + </span>
+    &quot;\nIntrigued, you decide to investigate and discover an old, weathered compass half-buried in the ground. &quot; + 
+    &quot;\nWith a newfound sense of direction, you follow the needle and end up at the edge of a swamp.&quot; +
+    &quot;\nYou begin to trudge through the challenging terrain, mud grabbing at every step. &quot; + 
+    &quot;\nThe swamp has an eerie stillness over it and the heavy fog is limiting your vision.&quot; + 
+    &quot;\nAt the heart of the swamp a silhouette emerges from the mist, reavealing the entrance to an abandoned mine. &quot; + 
+    &quot;\nGlancing at the compass, you notice it spinning uncontrollably. &quot; + 
+    &quot;\nThe mystery has piqued your interest, you put away the compass and venture into the depths of the mine.&quot;);
+
+<span class="nc" id="L29">    pressEnterToContinue(player);</span>
+    
+<span class="nc" id="L31">    System.out.println(&quot;You slowly pace yourself down the narrow tunnel with the sound of your every footstep reverberating off the worn stone walls.&quot; + </span>
+    &quot;\nDim light from the entrance soon reveals a room filled with old mining equipment and abandoned tools. As you step into the room&quot; + 
+    &quot;\nyou can feel the ground start shaking, collapsing stones and rocks seals of the entrance behind you!&quot;);
+
+<span class="nc" id="L35">    System.out.println(&quot;\nYou take a minute to catch your breath and assess the situation.&quot;);</span>
+
+<span class="nc" id="L37">    System.out.println(&quot;\nPress ENTER to continue&quot;);</span>
+<span class="nc" id="L38">    inputHandler.readInput(player);</span>
+
+<span class="nc" id="L40">    System.out.println(&quot;You light a torch and take a look around. You notice a dusty mining cart and a lever on the wall in the corner of the room.&quot;);</span>
+<span class="nc" id="L41">    swamp = false;    </span>
+}
+
+<span class="nc" id="L44">    boolean isLeverPulled = false;</span>
+<span class="nc" id="L45">    boolean mineCartLooted = false;</span>
+
+<span class="nc bnc" id="L47" title="All 2 branches missed.">    while (!isLeverPulled) {</span>
+
+<span class="nc" id="L49">        System.out.println(&quot;\nWhat do you want to do?&quot; + </span>
+        &quot;\n1. Examine the mining cart.&quot; + 
+        &quot;\n2. Pull the lever.&quot; + 
+        &quot;\n3. Search for another way out.&quot;);
+
+<span class="nc" id="L54">        String choice = inputHandler.readInput(player);</span>
+
+<span class="nc bnc" id="L56" title="All 4 branches missed.">        switch (choice) {</span>
+
+            case &quot;1&quot;:
+<span class="nc bnc" id="L59" title="All 2 branches missed.">                if (!mineCartLooted) {</span>
+<span class="nc" id="L60">                    System.out.println(&quot;\nYou examine the mining cart and find a pair of heavy-duty gloves and a sharp mining pick.&quot; + </span>
+                    &quot;\nHP: + 10&quot; + 
+                    &quot;\nAttack: + 3&quot;);
+<span class="nc" id="L63">                    player.addMaxHp(10);</span>
+<span class="nc" id="L64">                    player.addCurrentHp(10);</span>
+<span class="nc" id="L65">                    player.addAttack(3);</span>
+<span class="nc" id="L66">                    mineCartLooted = true;</span>
+<span class="nc" id="L67">                } else {</span>
+<span class="nc" id="L68">                System.out.println(&quot;\nYou've already looted the mining cart.&quot;);</span>
+                }
+<span class="nc" id="L70">            break;</span>
+
+            case &quot;2&quot;:
+<span class="nc" id="L73">                System.out.println(&quot;\nYou pull the lever but it's stuck. You're not one to be outsmarted by a lever so you summon the strength of an ox!&quot; +</span>
+                &quot;\n'HHNNNNNNNGG-' and the lever suddenly gives way, you faceplant the ground and lose 3 HP. Ouch.&quot;);
+<span class="nc" id="L75">                player.decreaseCurrentHp(3);</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">                if (!player.isAlive()) {return;}</span>
+<span class="nc" id="L77">                System.out.println(&quot;\nThe collapsed entrance starts to shift as a result and a narrow passage opens. You proceed down the passage.&quot;);</span>
+<span class="nc" id="L78">                isLeverPulled = true;</span>
+<span class="nc" id="L79">                break;</span>
+            
+            case &quot;3&quot;:
+<span class="nc" id="L82">                System.out.println(&quot;\nYou search for another exit but find nothing. &quot; + </span>
+                &quot;It seems the mining cart or lever might be significant..&quot;);
+                break;
+
+                default:
+        }
+    }
+    
+<span class="nc" id="L90">    pressEnterToContinue(player);</span>
+
+<span class="nc" id="L92">    System.out.println(&quot;You follow the newly opened passage and reach a chamber partially flooded with stagnant water.&quot; + </span>
+    &quot;\nThere's a decaying wooden bridge spanning before you.&quot;);
+
+<span class="nc" id="L95">    boolean bridgeCrossed = false;</span>
+
+<span class="nc bnc" id="L97" title="All 2 branches missed.">    while (!bridgeCrossed)  {</span>
+
+<span class="nc" id="L99">        System.out.println(&quot;\nWhat do you want to do?&quot; + </span>
+        &quot;\n1. Cross the bridge.&quot; + 
+        &quot;\n2. Look for another route around the water.&quot; + 
+        &quot;\n3. Assess the water for any potential hazards.&quot;);
+
+<span class="nc" id="L104">        String choice = inputHandler.readInput(player);</span>
+
+<span class="nc bnc" id="L106" title="All 4 branches missed.">        switch(choice) {</span>
+
+            case &quot;1&quot;:
+<span class="nc" id="L109">                System.out.println(&quot;\nYou cautiously step onto the bridge and begin to waddle across.&quot; + </span>
+                &quot;\nHalfway over the bridge you hear something snap and in a heartbeat you decide to make a leap of faith.&quot;); 
+<span class="nc" id="L111">                    int outcome = randomgen.nextInt(3); {</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">                        if (outcome == 1) {</span>
+<span class="nc" id="L113">                            System.out.println(&quot;\nYou make the jump on time and successfully land on solid ground. That was close!&quot;);</span>
+<span class="nc" id="L114">                            reflect();</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">                        } else if (outcome == 2) {</span>
+<span class="nc" id="L116">                            System.out.println(&quot;\nAs you push away with your feet to make the jump a plank breaks.&quot; + </span>
+                            &quot;\nFortunately it was only the one plank and you recover, making it to the other side with minor injuries. HP: - 5&quot;);
+<span class="nc" id="L118">                            player.decreaseCurrentHp(20);</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">                            if (!player.isAlive()) {return;}</span>
+
+<span class="nc" id="L121">                            reflect();</span>
+<span class="nc" id="L122">                        } else {</span>
+<span class="nc" id="L123">                            System.out.println(&quot;\nAs you make the jump, the bridge collapses underneath your feet. \nYou realize you will come up short &quot; + </span>
+                            &quot;but notice a frayed rope still tied to the base of the bridge that's mounted on solid ground.&quot; + 
+                            &quot;\nWith sheer determination you manage to grab hold of the rope, fighting against the strong current.&quot; +
+                            &quot;\nStruggling against the pain, you pull yourself up, hand over hand, until you finally reach safety.&quot; + 
+                            &quot;\n\nGasping for air, you collapse onto safe terrain. You narrowly escaped a perilous fall.&quot; + 
+                            &quot;\nThe whole ordeal has taken a toll on your body. HP: - 20&quot;);
+<span class="nc" id="L129">                            player.decreaseCurrentHp(20);</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">                            if (!player.isAlive()) {return;}</span>
+<span class="nc" id="L131">                            reflect();</span>
+<span class="nc" id="L132">                            System.out.println(&quot;You are still shaken from the previous experience: Speed -2&quot;);</span>
+                        }
+                    }
+<span class="nc" id="L135">                bridgeCrossed = true;</span>
+<span class="nc" id="L136">                break;</span>
+            
+            case &quot;2&quot;:
+<span class="nc" id="L139">                System.out.println(&quot;\nYou search for another route and uncover a steel door.&quot; + </span>
+                &quot;\nYou examine the steel door but find no way to open it. No keyhole, no door handle, nothing..&quot;);
+<span class="nc" id="L141">                break;</span>
+
+            case &quot;3&quot;:
+<span class="nc" id="L144">                System.out.println(&quot;\nYou carefully examine the water and notice a hidden current.&quot; + </span>
+                &quot;\nCrossing the bridge might be risky due to unseen dangers.&quot;);
+                break;
+
+            default:
+        }
+    }
+
+<span class="nc" id="L152">    pressEnterToContinue(player);</span>
+
+<span class="nc" id="L154">    System.out.println(&quot;You come to a seemingly dead end. There are torches lit on the walls and a single large boulder in the far end of the chamber.&quot; + </span>
+    &quot;\nYou also notice a treasure chest sitting infront of the boulder. You approach the chest cautiously, as it might be a trap.&quot; + 
+    &quot;\n\nSomething leaps out of from behind the boulder!&quot;);
+
+<span class="nc" id="L158">    pressEnterToContinue(player);</span>
+
+<span class="nc" id="L160">    battle.battle(player);</span>
+
+<span class="nc bnc" id="L162" title="All 2 branches missed.">    if (!player.isAlive()) {return;}</span>
+    
+<span class="nc" id="L164">    System.out.println(&quot;\nYou defeat the monster and claim the treasure! The chest contained 'Winged Boots'! Speed: + 10.&quot;);</span>
+<span class="nc" id="L165">    player.addSpeed(10);</span>
+
+<span class="nc" id="L167">    pressEnterToContinue(player);</span>
+
+<span class="nc" id="L169">    System.out.println(&quot;You're exhausted and sit down against the wall but notice a light break through a crack behind the boulder.&quot; + </span>
+    &quot;\nYou muster your last strength and successfully move the boulder just enough for you to slip through. Home free at last.&quot;);
+
+<span class="nc" id="L172">    gainEXP(player);</span>
+<span class="nc" id="L173">}</span>
+
+private void reflect() {
+<span class="nc" id="L176">    System.out.println(&quot;\nYou sit down and take a moment to reflect on how you even ended up here. After a while you stand up and continue deeper into the mine.&quot;);</span>
+<span class="nc" id="L177">}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

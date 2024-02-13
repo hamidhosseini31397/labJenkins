@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Weapon.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths</a> &gt; <span class="el_source">Weapon.java</span></div><h1>Weapon.java</h1><pre class="source lang-java linenums">package se.iths;
+
+
+import java.util.Random;
+
+public class Weapon 
+{
+<span class="nc" id="L8">    private String[] qualityCommon = {&quot;Rusty&quot;,&quot;Worn-down&quot;,&quot;Weathered&quot;,&quot;Chipped&quot;,&quot;Broken&quot;,&quot;Blunt&quot;}; </span>
+<span class="nc" id="L9">    private String[] qualityUncommon = {&quot;Normal&quot;,&quot;Regular&quot;,&quot;Forged&quot;,&quot;Standard&quot;,&quot;Ordinary&quot;,&quot;Simple&quot;};</span>
+<span class="nc" id="L10">    private String[] qualityRare = {&quot;Sharpened&quot;,&quot;Enchanted&quot;,&quot;Tempered&quot;,&quot;Fine-edge&quot;,&quot;Remarkable&quot;,&quot;Enhanced&quot;};</span>
+<span class="nc" id="L11">    private String[] qualityEpic = {&quot;Master&quot;,&quot;Magical&quot;,&quot;Unique&quot;,&quot;Elite&quot;,&quot;Relic&quot;,&quot;Mythic&quot;};</span>
+<span class="nc" id="L12">    private String[] weaponType = {&quot;Sword&quot;,&quot;Mace&quot;,&quot;Dagger&quot;,&quot;Club&quot;,&quot;Axe&quot;,&quot;Greatsword&quot;};</span>
+    //private String[] legendaryWeapons = {&quot;Mastersword&quot;,}
+<span class="nc" id="L14">    private Random index = new Random();</span>
+    private int dropQuality;
+    private int dropType;
+    private int qualityIndex;
+
+<span class="nc" id="L19">    Weapon(int quality)</span>
+    {
+<span class="nc" id="L21">        dropQuality = quality;</span>
+<span class="nc" id="L22">        qualityIndex = index.nextInt(qualityCommon.length);</span>
+<span class="nc" id="L23">        dropType = index.nextInt(weaponType.length);</span>
+<span class="nc" id="L24">    } </span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L28">        String result = &quot;This text should never appear, scream and run if it does.&quot;;</span>
+<span class="nc bnc" id="L29" title="All 5 branches missed.">        switch (dropQuality) {</span>
+            case 0:
+<span class="nc" id="L31">                result = qualityCommon[qualityIndex];</span>
+<span class="nc" id="L32">                break;</span>
+            case 1:
+<span class="nc" id="L34">                result = qualityUncommon[qualityIndex];</span>
+<span class="nc" id="L35">                break;</span>
+            case 2:
+<span class="nc" id="L37">                result = qualityRare[qualityIndex];</span>
+<span class="nc" id="L38">                break;</span>
+            case 3:
+<span class="nc" id="L40">                result = qualityEpic[qualityIndex];</span>
+                break;
+        }
+<span class="nc" id="L43">        return result + &quot; &quot; + weaponType[dropType];</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

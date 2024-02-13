@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AncientRuinsEvent.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths.allEvent</a> &gt; <span class="el_source">AncientRuinsEvent.java</span></div><h1>AncientRuinsEvent.java</h1><pre class="source lang-java linenums">package se.iths.allEvent;
+
+import se.iths.*;
+
+
+public class AncientRuinsEvent extends Event {
+
+public AncientRuinsEvent() {
+<span class="nc" id="L9">    super();</span>
+<span class="nc" id="L10">    this.eventLevel = 20;</span>
+<span class="nc" id="L11">}</span>
+
+@Override
+public void execute(Player player, InputHandler inputHandler) {
+<span class="nc" id="L15">    Event dragonFight = new DragonFightEvent();</span>
+<span class="nc" id="L16">    System.out.println(&quot;The path takes you to the mighty dragons lair. As you step inside the ruins you find a mysterious altar in the first chamber.&quot;);</span>
+<span class="nc" id="L17">        System.out.println(&quot;Do you want to approach the altar? \n[1] Yes \n[2] No&quot;);</span>
+<span class="nc" id="L18">        String altarChoice = input.readInput(player);</span>
+<span class="nc bnc" id="L19" title="All 3 branches missed.">            switch (altarChoice) {</span>
+                case &quot;1&quot;:
+<span class="nc" id="L21">                int outcome = randomgen.nextInt(3);</span>
+<span class="nc bnc" id="L22" title="All 2 branches missed.">                if (outcome == 0) {</span>
+<span class="nc" id="L23">                    System.out.println(&quot;Approaching the altar, you feel a surge of power!&quot;);</span>
+<span class="nc" id="L24">                    System.out.println(&quot;It's time to kick ass and chew bubblegum and you're all out of gum.\nYou gain a level!&quot;);</span>
+<span class="nc" id="L25">                        player.levelUp();</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">                } else if (outcome == 1) {</span>
+<span class="nc" id="L27">                    System.out.println(&quot;The ancient spirits are angered!&quot;);</span>
+<span class="nc" id="L28">                    System.out.println(&quot;You take an arrow to the knee, lose some HP and your speed is reduced!\nSpeed: - 10 \n Current HP: - 5&quot;);</span>
+<span class="nc" id="L29">                        player.decreaseSpeed(10);</span>
+<span class="nc" id="L30">                        player.decreaseCurrentHp(5);</span>
+<span class="nc" id="L31">                } else {</span>
+<span class="nc" id="L32">                    System.out.println(&quot;The altar seems dormant, but you hear a faint voice echo: 'Do a barrel roll!'&quot;);</span>
+<span class="nc" id="L33">                    System.out.println(&quot;Do a barrel roll? \n[1] Yes \n[2] No&quot;);</span>
+<span class="nc" id="L34">                    String userChoice = input.readInput(player);</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">                        if(userChoice.equalsIgnoreCase(&quot;1&quot;)) {</span>
+<span class="nc" id="L36">                            System.out.println(&quot;Understanding and paying homage to a classic gaming advice you perform an amazing barrel roll, successfully dodging a poisonous arrow fired at you from behind!&quot;);</span>
+<span class="nc" id="L37">                            System.out.println(&quot;You feel light on your feet.&quot;);</span>
+<span class="nc" id="L38">                            player.addSpeed(10);</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">                        } else if(userChoice.equalsIgnoreCase(&quot;2&quot;)) {</span>
+<span class="nc" id="L40">                            System.out.println(&quot;You have no context to the expression and stand too long lost in thought and get hit in the back by a poisonus arrow!&quot;);</span>
+<span class="nc" id="L41">                            System.out.println(&quot;The posion spreads fast and you can feel all your senses numbing. While laying there you suddenly question if you remembered to lock your door before you embarked on this adventure..&quot;);</span>
+<span class="nc" id="L42">                            player.setCurrentHp(0);</span>
+<span class="nc" id="L43">                            return;</span>
+                        }
+                } 
+                break;
+             case &quot;2&quot;:
+<span class="nc" id="L48">                System.out.println(&quot;You decide not to approach the altar and continue exploring&quot;);</span>
+            }
+<span class="nc" id="L50">            System.out.println(&quot;As you explore the room you find two possible paths. One leads down to your left, to the catacombs where the mighty dragon is said to live. The other is branching off to your right. Magic seems to radiate from the passage. Which way do you want to go? \n[1] Left. To the dragon! \n[2] Right. The mystery is compelling you.&quot;);</span>
+<span class="nc" id="L51">            String dragonordream = input.readInput(player);</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            if(player.getExcalibre()==1){</span>
+<span class="nc" id="L53">                dragonordream = &quot;1&quot;;</span>
+<span class="nc" id="L54">                System.out.println(&quot;You feel the magical sword draw you towards the left stairs. You decide to go to the dragon.&quot;);</span>
+            }
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            if(dragonordream.equals(&quot;1&quot;)){</span>
+<span class="nc" id="L57">                System.out.println(&quot;The moment you step down the stairs a large metal door slams shut behind you. There is no way back.&quot;);</span>
+<span class="nc" id="L58">                dragonFight.execute(player,input);</span>
+<span class="nc" id="L59">            }</span>
+            else{
+<span class="nc" id="L61">                System.out.println(&quot;The right path is soon covered in luminous moss and you feel drawn towards something. The air is heavy with a sweet scent and you start to feel drowsy.&quot;);</span>
+<span class="nc" id="L62">                System.out.println(&quot;You continue forward with increasingly heavy steps until you has to sit down and rest. You can barely keep your eyes open.&quot;);</span>
+<span class="nc" id="L63">                System.out.println(&quot;Before you know it you feel your mind slipping and when you open your eyes the world has a shimmering tint and you wonder if you might be dreaming. You get up and your body feel strangely light. Something is not right but you can't put your finger on what it is.&quot;);</span>
+<span class="nc" id="L64">                input.readInput(player);</span>
+<span class="nc" id="L65">                System.out.println(&quot;The walls are covered in strange shrooms foreign to the world you know and as you keep walking they start to dance in front of your eyes.&quot;);</span>
+<span class="nc" id="L66">                System.out.println(&quot;You reach a large field of wildflowers and stop to blink. Were you not in the ruins just now?&quot;);</span>
+<span class="nc" id="L67">                System.out.println(&quot;The sky is bright with lilac swirls and you are sure you are dreaming even before you spot the enormus dragon snoozing on the blueish grass. You step back in surprise and the dragon lifts it's head.&quot;);</span>
+<span class="nc" id="L68">                System.out.println(&quot;'Who dares disturb my sleep?' the dragon growls and you turn to run but the path behind you has transformed into an endless field of flowers.&quot;);</span>
+<span class="nc" id="L69">                input.readInput(player);</span>
+<span class="nc" id="L70">                Speak(player, inputHandler);</span>
+<span class="nc" id="L71">                return;</span>
+                }
+<span class="nc" id="L73">}</span>
+
+
+public void Speak(Player player, InputHandler inputHandler){
+<span class="nc" id="L77">    boolean speakChoice = true;</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">    while(speakChoice){</span>
+<span class="nc" id="L79">        System.out.println(&quot;What do you do next? \n[1] Attack the Dragon. \n[2] Speak to the Dragon.&quot;);</span>
+<span class="nc" id="L80">        String speak = input.readInput(player);</span>
+<span class="nc bnc" id="L81" title="All 3 branches missed.">        switch (speak){</span>
+            case &quot;1&quot;:
+<span class="nc" id="L83">            System.out.println(&quot;You raise your weapon and charge. You have nothing to lose.&quot;);</span>
+<span class="nc" id="L84">            dreamBattle(player, inputHandler);</span>
+<span class="nc" id="L85">            speakChoice = false;</span>
+<span class="nc" id="L86">            return;</span>
+            case &quot;2&quot;:
+<span class="nc" id="L88">            System.out.println(&quot;'I'm terribly sorry to have disturbed you. I am lost and only wish to ask for directions.'&quot;);</span>
+<span class="nc" id="L89">                System.out.println(&quot;The dragon huffs as it slithers closer to look at you. You should be shaking with fear but feel strangely calm.&quot;);</span>
+<span class="nc" id="L90">                System.out.println(&quot;'Lost in a dream, never to wake. I have no directions to offer a tiny human soul that have wandered into my prison.'&quot;);</span>
+<span class="nc" id="L91">                System.out.println(&quot;Dream? Prison? What is this place? Who are you?&quot;);</span>
+<span class="nc" id="L92">                System.out.println(&quot;The dream of Ataraxia. The prison that has been my home for a very long time. I no longer remember my name.&quot;);</span>
+<span class="nc" id="L93">                input.readInput(player);</span>
+<span class="nc" id="L94">                System.out.println(&quot;Is there no way out?&quot;); </span>
+<span class="nc" id="L95">                System.out.println(&quot;'For me? No.. Only death will release me from this place. And death comes slow to dragonkind.'&quot;);</span>
+<span class="nc" id="L96">                System.out.println(&quot;'And for me?' you ask, feeling despair growing in your chest.&quot;);</span>
+<span class="nc" id="L97">                System.out.println(&quot;The dragon looked down at you sadly. The answer in it's eyes all you needed.&quot;);</span>
+<span class="nc" id="L98">                Resign(player, inputHandler);</span>
+<span class="nc" id="L99">                speakChoice = false;</span>
+<span class="nc" id="L100">                return;</span>
+            }
+    }
+   
+<span class="nc" id="L104">}</span>
+public void Resign(Player player, InputHandler inputHandler){
+<span class="nc" id="L106">    boolean stay = true;</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">    while(stay){</span>
+<span class="nc" id="L108">        System.out.println(&quot;What do you do next? \n[1] Attack the Dragon. \n[2] Resign to your fate.&quot;);</span>
+<span class="nc" id="L109">        String resign = input.readInput(player);</span>
+<span class="nc bnc" id="L110" title="All 3 branches missed.">        switch (resign){</span>
+            case &quot;1&quot;:
+<span class="nc" id="L112">            System.out.println(&quot;You raise your weapon and charge. You have nothing to lose.&quot;);</span>
+<span class="nc" id="L113">            dreamBattle(player, inputHandler);</span>
+<span class="nc" id="L114">            stay = false;</span>
+<span class="nc" id="L115">            return;</span>
+            case &quot;2&quot;:
+<span class="nc" id="L117">            System.out.println(&quot;You sigh and drop your weapon. Accepting that you never were a Hero to begin with and that you shouldn't have left your home. You trudged over to the dragon and slumped down on the blue grass.&quot;);</span>
+<span class="nc" id="L118">            System.out.println(&quot;'I guess this is my prison now too. I hope you dont mind some company.'&quot;);</span>
+<span class="nc" id="L119">            System.out.println(&quot;The dragon hummed and looked down at you.&quot;);</span>
+<span class="nc" id="L120">            System.out.println(&quot;'I don't. It is terribly lonely in this place. What is your name, mortal?'&quot;);</span>
+<span class="nc" id="L121">            System.out.println(&quot;'&quot; + player.getName() + &quot;'&quot;);</span>
+<span class="nc" id="L122">            System.out.println(&quot;'Welcome, &quot; + player.getName() + &quot;, to the end of your life.&quot;);</span>
+<span class="nc" id="L123">            stay = false;</span>
+<span class="nc" id="L124">            return;</span>
+        }
+    }
+<span class="nc" id="L127">}</span>
+public void dreamBattle(Player player, InputHandler inputHandler){
+<span class="nc" id="L129">        Event HeroDream = new HeroDream();</span>
+<span class="nc" id="L130">        HeroDream.execute(player, inputHandler);</span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">                if (!player.isAlive()) {</span>
+<span class="nc" id="L132">                    System.out.println(&quot;The dream endend abruptly. You found yourself rapidly bleeding out on the floor. You were not the hero. You should've known. I warned you right from the start.&quot;);</span>
+<span class="nc" id="L133">                    return;}</span>
+<span class="nc" id="L134">                System.out.println(&quot;The dream ended abruptly and you found yourself back in the ruins. You felt so shaken by your experience your whole body was trembling violently. You looked down at your hands and came to a conclusion.&quot;);</span>
+<span class="nc" id="L135">                System.out.println(&quot;One dragon was enough. You had proven yourself and now you wanted to go home. You were no hero. And that was completely fine.&quot;);</span>
+<span class="nc" id="L136">                System.out.println(&quot;The End&quot;);</span>
+<span class="nc" id="L137">                input.readInput(player);</span>
+<span class="nc" id="L138">}</span>
+
+
+}
+    
+    
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

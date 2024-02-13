@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FairyEvent.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths.allEvent</a> &gt; <span class="el_source">FairyEvent.java</span></div><h1>FairyEvent.java</h1><pre class="source lang-java linenums">package se.iths.allEvent;
+
+import se.iths.*;
+
+
+public class FairyEvent extends Event {
+
+public FairyEvent(){
+<span class="nc" id="L9">    super();</span>
+<span class="nc" id="L10">    this.eventLevel = 4;</span>
+<span class="nc" id="L11">}</span>
+    
+public void execute(Player player, InputHandler inputHandler){
+
+<span class="nc" id="L15">    boolean voice = true;</span>
+<span class="nc bnc" id="L16" title="All 2 branches missed.">    while(voice){</span>
+<span class="nc" id="L17">        System.out.println(&quot;As you walk along the path you hear a singing voice coming from deep within the forest. Do you check it out? \n[1] Yes \n[2] No&quot;);</span>
+<span class="nc" id="L18">        String check = input.readInput(player);  </span>
+<span class="nc bnc" id="L19" title="All 6 branches missed.">        if(check.equals(&quot;yes&quot;)||check.equals(&quot;1&quot;)||check.equals(&quot;y&quot;)) {</span>
+<span class="nc" id="L20">            dontLeave(player);</span>
+<span class="nc" id="L21">            voice = false;</span>
+<span class="nc bnc" id="L22" title="All 2 branches missed.">        } else if (check.equals(&quot;/menu&quot;)){</span>
+<span class="nc" id="L23">            continue;</span>
+<span class="nc bnc" id="L24" title="All 6 branches missed.">        } else if (check.equals(&quot;no&quot;)||check.equals(&quot;2&quot;)||check.equals(&quot;n&quot;)){</span>
+<span class="nc" id="L25">            noFairy(player);</span>
+<span class="nc" id="L26">            voice = false;</span>
+        } else {
+        }
+    }
+<span class="nc" id="L30">}</span>
+
+    public void dontLeave(Player player){
+<span class="nc" id="L33">        boolean no = true;</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        while (no) {</span>
+<span class="nc" id="L35">            System.out.println(&quot;You follow the beautiful voice until the dark trees give way to a silver pool.&quot;);</span>
+<span class="nc" id="L36">            System.out.println(&quot;Above the glittering water you see a beautiful lady dancing in the air. You get the feeling that you should not be here. \nLeave? \n[1] Yes \n[2] No&quot;);</span>
+<span class="nc" id="L37">            String leave = input.readInput(player);</span>
+<span class="nc bnc" id="L38" title="All 3 branches missed.">            switch (leave) {</span>
+                case &quot;1&quot;:
+<span class="nc" id="L40">                    doLeave(player);</span>
+<span class="nc" id="L41">                    no = false;</span>
+<span class="nc" id="L42">                    break;</span>
+                case &quot;2&quot;:
+<span class="nc" id="L44">                    entranced(player,no);</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">                    if (!player.isAlive()) {return;}</span>
+<span class="nc" id="L46">                    stay(player);</span>
+<span class="nc" id="L47">                    no = false;</span>
+                    break;
+
+                default:
+            } 
+        }
+<span class="nc" id="L53">    }</span>
+
+    public void doLeave(Player player){
+<span class="nc" id="L56">        boolean tryToLeave = true;</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        while(tryToLeave){</span>
+<span class="nc" id="L58">            System.out.println(&quot;You decide to try to sneak back the way you came but find that your legs won't obey your wishes. Try again?\n[1] Yes \n[2] No&quot;);</span>
+<span class="nc" id="L59">            String leave = input.readInput(player);</span>
+<span class="nc bnc" id="L60" title="All 3 branches missed.">            switch (leave){</span>
+                case &quot;1&quot;:
+<span class="nc" id="L62">                    fairyBlessing(player);</span>
+<span class="nc" id="L63">                    tryToLeave = false;</span>
+<span class="nc" id="L64">                    break;</span>
+                case &quot;2&quot;:
+<span class="nc" id="L66">                    entranced(player,tryToLeave);</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">                    if (!player.isAlive()) {return;}</span>
+<span class="nc" id="L68">                    stay(player);</span>
+<span class="nc" id="L69">                    tryToLeave = false;</span>
+                    break;
+                default:
+            }
+        }    
+<span class="nc" id="L74">    }</span>
+  
+    public void fairyBlessing(Player player) {
+
+<span class="nc" id="L78">        boolean feetRooted = true;</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        while (feetRooted) {</span>
+<span class="nc" id="L80">            System.out.println(&quot;Your feet are firmly planted on the ground like they have taken root. What will you do? \n [1] Lift your left leg with your hands. \n [2] Lift your right leg with your hands. \n [3] Lay down and try to crawl away.&quot;);</span>
+<span class="nc" id="L81">            String blessing = input.readInput(player);</span>
+<span class="nc bnc" id="L82" title="All 4 branches missed.">            switch (blessing){</span>
+                case &quot;1&quot;:
+<span class="nc" id="L84">                    System.out.println(&quot;Your struggle is drawing the attention of the beautiful lady and before you can take even one step she appears in front of you.&quot; + </span>
+                    &quot;\nWhen she speaks you feel your soul tremble but you are in luck, she is flattered that you liked her song and blesses you with a strand of her hair before she sends you on your way.&quot;);
+<span class="nc" id="L86">                    player.addMaxHp(5);</span>
+<span class="nc" id="L87">                    player.addAttack(3);</span>
+<span class="nc" id="L88">                    System.out.println(&quot;Max HP: + 5 \nAttack: + 3&quot;);</span>
+<span class="nc" id="L89">                    System.out.println();</span>
+<span class="nc" id="L90">                    gainEXP(player);</span>
+<span class="nc" id="L91">                    feetRooted = false;</span>
+<span class="nc" id="L92">                    break;</span>
+                case &quot;2&quot;:
+<span class="nc" id="L94">                    System.out.println(&quot;Your struggle is drawing the attention of the beautiful lady and before you can take even one step she appears in front of you.&quot; + </span>
+                    &quot;\nWhen she speaks you feel your soul tremble but you are in luck, she is flattered that you liked her song and blesses you with a flower from her dress before she sends you on your way.&quot;);
+<span class="nc" id="L96">                    player.addMaxHp(5);</span>
+<span class="nc" id="L97">                    player.addSpeed(5);</span>
+<span class="nc" id="L98">                    System.out.println(&quot;Max HP: + 5 \nSpeed: + 5&quot;);</span>
+<span class="nc" id="L99">                    System.out.println();</span>
+<span class="nc" id="L100">                    gainEXP(player);</span>
+<span class="nc" id="L101">                    feetRooted = false;</span>
+<span class="nc" id="L102">                    break;</span>
+                case &quot;3&quot;:
+<span class="nc" id="L104">                    System.out.println(&quot;The Fair Lady notices you prostrating and appears in your path. You are sure great missfortune will befall you now but she asks you to stand, calling you silly for bowing to her. You are not stupid enough to correct her.&quot; + </span>
+                    &quot; She wishes to converse with you so you answer her questions about the world and of your travels until dusk falls and she sends you on your way with the blessing of the Fairies.&quot; + 
+                    &quot; You do not know what this means but are just happy to have survived the fantasical encounter.&quot;);
+<span class="nc" id="L107">                    player.addFairy(1);</span>
+<span class="nc" id="L108">                    System.out.println(&quot;You now have a Fairy's blessing, When in dire need your life might be saved. \nExperience: + 80&quot;);</span>
+<span class="nc" id="L109">                    player.addExperience(80);</span>
+<span class="nc" id="L110">                    feetRooted = false;</span>
+                    break;
+                default:
+            }
+        }
+<span class="nc" id="L115">    }</span>
+
+    public void entranced(Player player,boolean b){
+        
+<span class="nc" id="L119">        System.out.println(&quot;You are enthranced by the ethereal beauty before you and fail to notice your strenght slowly draining.&quot;);</span>
+<span class="nc" id="L120">        player.decreaseMaxHp(5);</span>
+<span class="nc" id="L121">        player.decreaseAttack(2);</span>
+<span class="nc" id="L122">        player.decreaseSpeed(1);</span>
+<span class="nc" id="L123">        System.out.println(&quot;Max HP: - 5 &quot;);</span>
+<span class="nc" id="L124">        System.out.println(&quot;Current HP: - 5&quot;);</span>
+<span class="nc" id="L125">        System.out.println(&quot;Attack: - 2 \nSpeed: - 1&quot;);</span>
+<span class="nc" id="L126">        System.out.println();</span>
+<span class="nc" id="L127">        player.decreaseCurrentHp(10);</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">        if (!player.isAlive()) {b=false; return;}</span>
+<span class="nc" id="L129">        System.out.println(&quot;You should probaly leave. Will you walk away? \n[1] Yes \n[2] No&quot;);</span>
+<span class="nc" id="L130">        input.readInput(player);</span>
+<span class="nc" id="L131">    }</span>
+
+    public void stay(Player player){
+<span class="nc" id="L134">        boolean watching = true;</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">        while (watching){</span>
+<span class="nc" id="L136">            System.out.println(&quot;You find it hard to move, the beautiful voice seem to draw you in and you are tempted to stay. What do you do? \n[1] Stay and watch a few more minutes. \n[2] It is time to leave.&quot;);</span>
+<span class="nc" id="L137">            String hardChoice = input.readInput(player);</span>
+
+<span class="nc bnc" id="L139" title="All 3 branches missed.">            switch (hardChoice){</span>
+                case &quot;1&quot;:
+<span class="nc" id="L141">                    System.out.println(&quot;You keep watching the beautiful fairy singing and dancing long into the night. When you finally come to your senses the forest is dark and still.&quot;);</span>
+<span class="nc" id="L142">                    System.out.println(&quot;The experience leave you feeling severely weakened. A fairy's fair form is not for a mortals fragile mind to behold.&quot;);</span>
+<span class="nc" id="L143">                    player.decreaseMaxHp(5);</span>
+<span class="nc" id="L144">                    player.decreaseAttack(5);</span>
+<span class="nc" id="L145">                    player.decreaseSpeed(4);</span>
+<span class="nc" id="L146">                    System.out.println(&quot;Max HP: - 5 \nHP: - 15 &quot;);</span>
+<span class="nc" id="L147">                    System.out.println(&quot;Attack: - 5 \nSpeed: - 4&quot;);</span>
+<span class="nc" id="L148">                    System.out.println();</span>
+<span class="nc" id="L149">                    player.decreaseCurrentHp(150);</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">                    if (!player.isAlive()) {return;}</span>
+<span class="nc" id="L151">                    gainEXP(player);</span>
+<span class="nc" id="L152">                    System.out.println();</span>
+<span class="nc" id="L153">                    watching = false;</span>
+<span class="nc" id="L154">                    break;</span>
+                case &quot;2&quot;:
+<span class="nc" id="L156">                    System.out.println(&quot;You fight free and back away, slowly making your way back through the trees. The experience leave you feeling weaker than before.&quot;);</span>
+<span class="nc" id="L157">                    gainEXP(player); </span>
+<span class="nc" id="L158">                    watching = false;</span>
+                    break;
+                default:   
+            }          
+        }   
+<span class="nc" id="L163">    }</span>
+
+    public void noFairy(Player player){
+<span class="nc" id="L166">        System.out.println(&quot;You continue down the road, the beautiful singing hauting you for a long time.&quot;);</span>
+<span class="nc" id="L167">        System.out.println(&quot;Your resolve was strengthend, you gain experience.\nExperience: + 80&quot;);</span>
+<span class="nc" id="L168">        player.addExperience(80);</span>
+<span class="nc" id="L169">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

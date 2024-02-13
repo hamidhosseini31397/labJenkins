@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Dragon.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths</a> &gt; <span class="el_source">Dragon.java</span></div><h1>Dragon.java</h1><pre class="source lang-java linenums">package se.iths;
+
+public class Dragon {
+    String name;
+<span class="nc" id="L5">    public Dragon(String name) {</span>
+<span class="nc" id="L6">        this.name = name;</span>
+<span class="nc" id="L7">    }</span>
+
+    public void introduce(Player player) {
+<span class="nc" id="L10">    }</span>
+
+    public void killsPlayer(Player player) {
+<span class="nc" id="L13">    }</span>
+
+    public void killsDragon(Player player) {
+<span class="nc" id="L16">    }</span>
+}
+
+class MTGDragon extends Dragon {
+    public MTGDragon(String name) {
+<span class="nc" id="L21">        super(name);</span>
+<span class="nc" id="L22">    }</span>
+    public void introduce(Player player) {
+<span class="nc" id="L24">        InputHandler input = new InputHandler();</span>
+<span class="nc" id="L25">        System.out.println(&quot;A mighty dragon rears up infront of you.&quot;); </span>
+<span class="nc" id="L26">        System.out.println(&quot;With it's huge fangs and golden ornaments it looks absolutely dominant.&quot;);</span>
+<span class="nc" id="L27">        System.out.println(&quot;- Who do you think you are to stand before the mighty Dragonlord Silamgar?&quot;);</span>
+<span class="nc" id="L28">        System.out.println(&quot;It's hissing voice fills the air like a thousand snakes all at once.&quot;);</span>
+<span class="nc" id="L29">        System.out.println(&quot;- I have sneared countless bodies to serve me even after their life have left them!&quot;);</span>
+<span class="nc" id="L30">        System.out.println(&quot;- I tricked the fierce Khan Tasigur and made him into a pendant.&quot;);</span>
+<span class="nc" id="L31">        System.out.println(&quot;You see that he does have what seems like a withered body hanging around&quot;); </span>
+<span class="nc" id="L32">        System.out.println(&quot;his neck in a golden chain, with links the size of your shoes.&quot;);</span>
+<span class="nc" id="L33">        System.out.println(&quot;- I have even tricked death itself, and you think that YOU can kill me?&quot;);</span>
+<span class="nc" id="L34">        System.out.println(&quot;What's left of your body will serve me eternally&quot;);</span>
+<span class="nc" id="L35">        Boolean attack = true;</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        while (attack){            </span>
+<span class="nc" id="L37">            System.out.println(&quot;\nWhat do you want to do? \n[1] Attack the Dragon! \n[2] Heal.&quot;);</span>
+<span class="nc" id="L38">            String choice = input.readInput(player);</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            if(choice.equals(&quot;1&quot;)){</span>
+<span class="nc" id="L40">                attack=false;</span>
+<span class="nc" id="L41">                break;</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            } else if (choice.equals(&quot;2&quot;)) {</span>
+<span class="nc" id="L43">                player.heal(player);    </span>
+            }
+        }
+<span class="nc" id="L46">    }</span>
+
+
+    public void killsPlayer(Player player) {
+<span class="nc" id="L50">    InputHandler input = new InputHandler();</span>
+<span class="nc" id="L51">        System.out.println(&quot;The dragon laughs at your feeble attempt before it rears its neck and shoots out a spray of dark green fluid.&quot;);</span>
+<span class="nc" id="L52">        System.out.println(&quot;You cannot dodge. As it hits you your flesh begins to boil, your skin falls to the ground in big patches&quot;);</span>
+<span class="nc" id="L53">        System.out.println(&quot;and your body follows soon after. Your screams of agony echo for a long time.&quot;);</span>
+<span class="nc" id="L54">        System.out.println(&quot;You have died a horrible death. It was to be expected though.&quot;);</span>
+<span class="nc" id="L55">        System.out.println(&quot;I told you in the beginning... you are not the hero.&quot;);</span>
+<span class="nc" id="L56">        System.out.println(&quot;Press Enter to continue.&quot;); </span>
+<span class="nc" id="L57">        input.readInput(player);     </span>
+
+<span class="nc" id="L59">    }</span>
+
+    public void killsDragon(Player player) {
+<span class="nc" id="L62">        InputHandler input = new InputHandler();</span>
+<span class="nc" id="L63">        System.out.println(&quot;You brandish your magnificent sword, and with a powerfull swing create a beautiful arc.&quot;);</span>
+<span class="nc" id="L64">        System.out.println(&quot;The air warps and shoots out from where your sword swung.&quot;);</span>
+<span class="nc" id="L65">        System.out.println(&quot;The dragon's head slides of it's neck from a cut so clean that it was impossible to see.&quot;);</span>
+<span class="nc" id="L66">        System.out.println(&quot;You have slain the mighty Dragonlord Silamgar and freed the area of it's taint&quot;);</span>
+<span class="nc" id="L67">        System.out.println(&quot;Who would have known... you were a hero after all.&quot;);</span>
+<span class="nc" id="L68">        System.out.println(&quot;Press Enter to continue.&quot;); </span>
+<span class="nc" id="L69">        input.readInput(player);</span>
+
+<span class="nc" id="L71">    }    </span>
+    
+}
+
+class TolkienDragon extends Dragon {
+    public TolkienDragon(String name) {
+<span class="nc" id="L77">        super(name);</span>
+<span class="nc" id="L78">    }</span>
+    public void introduce(Player player) {
+<span class="nc" id="L80">        InputHandler input = new InputHandler();</span>
+<span class="nc" id="L81">        System.out.println(&quot;An opening that reveals a huge room you and a powerful but sly voice greets you in the doorway.&quot;); </span>
+<span class="nc" id="L82">        System.out.println(&quot;- A little thief is it? Coming to steal what's mine?&quot;);</span>
+<span class="nc" id="L83">        System.out.println(&quot;A collosal dragon is laying ontop of a mountain of gold.&quot;);</span>
+<span class="nc" id="L84">        System.out.println(&quot;It Looks towards you and smiles.&quot;);</span>
+<span class="nc" id="L85">        System.out.println(&quot;- How nice! A little snack is coming straight to me.&quot;);</span>
+<span class="nc" id="L86">        System.out.println(&quot;- Are you perhaps hoping to get your hands upon some of my treasure? Maybe even this?&quot;);</span>
+<span class="nc" id="L87">        System.out.println(&quot;It holds a big blue-white stone that shines with an inner light.&quot;); </span>
+<span class="nc" id="L88">        System.out.println(&quot;The dragon laughs loudly. - The Akrenstone is mine!&quot;);</span>
+<span class="nc" id="L89">        System.out.println(&quot;- You will not leave here with any gold little thief.&quot;);</span>
+<span class="nc" id="L90">        System.out.println(&quot;- Be honored. Today you'll be the meal to Smugg.&quot;);</span>
+<span class="nc" id="L91">        Boolean attack = true;</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        while (attack){            </span>
+<span class="nc" id="L93">            System.out.println(&quot;\nWhat do you want to do? \n[1] Attack the Dragon! \n[2] Heal.&quot;);</span>
+<span class="nc" id="L94">            String choice = input.readInput(player);</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            if(choice.equals(&quot;1&quot;)){</span>
+<span class="nc" id="L96">                attack=false;</span>
+<span class="nc" id="L97">                break;</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            } else if (choice.equals(&quot;2&quot;)) {</span>
+<span class="nc" id="L99">                player.heal(player);    </span>
+            }
+        }
+<span class="nc" id="L102">    }</span>
+
+    public void killsPlayer(Player player) {
+<span class="nc" id="L105">        InputHandler input = new InputHandler();</span>
+<span class="nc" id="L106">        System.out.println(&quot;Smuggs long neck snapps out and the last thing you see are rows of sharp teeth and a curling tounge.&quot;);</span>
+<span class="nc" id="L107">        System.out.println(&quot;You cannot dodge.&quot;);</span>
+<span class="nc" id="L108">        System.out.println(&quot;You have died and it was to be expected.&quot;);</span>
+<span class="nc" id="L109">        System.out.println(&quot;I told you in the beginning... you are not the hero.&quot;);</span>
+<span class="nc" id="L110">        System.out.println(&quot;Press Enter to continue.&quot;); </span>
+<span class="nc" id="L111">        input.readInput(player);      </span>
+
+<span class="nc" id="L113">    }</span>
+
+    public void killsDragon(Player player) {
+<span class="nc" id="L116">        InputHandler input = new InputHandler();</span>
+<span class="nc" id="L117">        System.out.println(&quot;You brandish your magnificent sword, and with a powerfull swing create a black spear like shape.&quot;);</span>
+<span class="nc" id="L118">        System.out.println(&quot;It shoots out and hits the dragon in its chest, right where a small scar has left the skinn exposed.&quot;);</span>
+<span class="nc" id="L119">        System.out.println(&quot;The dragon collapses and breathes its last rasping breath.&quot;);</span>
+<span class="nc" id="L120">        System.out.println(&quot;You have slain the mighty Dragon Smugg and the pile of gold can be destributed to the people.&quot;);</span>
+<span class="nc" id="L121">        System.out.println(&quot;Who would have known... you were a hero after all.&quot;);</span>
+<span class="nc" id="L122">        System.out.println(&quot;Press Enter to continue.&quot;); </span>
+<span class="nc" id="L123">        input.readInput(player);</span>
+<span class="nc" id="L124">    } </span>
+}
+
+class WowDragon extends Dragon {
+    public WowDragon(String name) {
+<span class="nc" id="L129">        super(name);</span>
+<span class="nc" id="L130">    }</span>
+
+    public void introduce(Player player) {
+<span class="nc" id="L133">        InputHandler input = new InputHandler();</span>
+<span class="nc" id="L134">        System.out.println(&quot;You enter a room that is dark and quiet.&quot;); </span>
+<span class="nc" id="L135">        System.out.println(&quot;In the back you see two eyes glowing, staring at you.&quot;);</span>
+<span class="nc" id="L136">        System.out.println(&quot;It approaches you silently.&quot;);</span>
+<span class="nc" id="L137">        System.out.println(&quot;Suddenly you hear a whisper coming from nowhere. - That is Naltherion. The dragon aspect.&quot;);</span>
+<span class="nc" id="L138">        System.out.println(&quot;- He currently goes under the name Deafwing and is corrupted by the old gods.&quot;);</span>
+<span class="nc" id="L139">        System.out.println(&quot;- We, the other aspects will try to help you in your fight to kill him and cleanse his spirit.&quot;);</span>
+<span class="nc" id="L140">        System.out.println(&quot;You feel emboldened by those words, wherever they are coming from.&quot;); </span>
+<span class="nc" id="L141">        Boolean attack = true;</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">        while (attack){            </span>
+<span class="nc" id="L143">            System.out.println(&quot;\nWhat do you want to do? \n[1] Attack the Dragon! \n[2] Heal.&quot;);</span>
+<span class="nc" id="L144">            String choice = input.readInput(player);</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if(choice.equals(&quot;1&quot;)){</span>
+<span class="nc" id="L146">                attack=false;</span>
+<span class="nc" id="L147">                break;</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            } else if (choice.equals(&quot;2&quot;)) {</span>
+<span class="nc" id="L149">                player.heal(player);    </span>
+            }
+        }
+<span class="nc" id="L152">    }</span>
+
+    public void killsPlayer(Player player) {
+<span class="nc" id="L155">        InputHandler input = new InputHandler();</span>
+<span class="nc" id="L156">        System.out.println(&quot;The dragon fills the space with fire.&quot;);</span>
+<span class="nc" id="L157">        System.out.println(&quot;Deafwing does not even utter a sound as your body becomes ash and you perish from this world.&quot;);</span>
+<span class="nc" id="L158">        System.out.println(&quot;I told you in the beginning... you are not the hero.&quot;);</span>
+<span class="nc" id="L159">        System.out.println(&quot;Press Enter to continue.&quot;);</span>
+<span class="nc" id="L160">        input.readInput(player);</span>
+<span class="nc" id="L161">    }</span>
+
+    public void killsDragon(Player player) {
+<span class="nc" id="L164">        InputHandler input = new InputHandler();</span>
+<span class="nc" id="L165">        System.out.println(&quot;You brandish your magnificent sword, and with a powerfull swing creating the image of a golden disc.&quot;);</span>
+<span class="nc" id="L166">        System.out.println(&quot;The disc shoots out towards the dragon and mid-flight the image of four other dragons apear alongside the disc.&quot;);</span>
+<span class="nc" id="L167">        System.out.println(&quot;They all crash into the dragon, which disappears in a cloud of purple light.&quot;);</span>
+<span class="nc" id="L168">        System.out.println(&quot;You have defeated the dragon Deafwing and life will one again flurish.&quot;);</span>
+<span class="nc" id="L169">        System.out.println(&quot;Who would have known... you were a hero after all.&quot;);</span>
+<span class="nc" id="L170">        System.out.println(&quot;Press Enter to continue.&quot;);</span>
+<span class="nc" id="L171">        input.readInput(player);</span>
+<span class="nc" id="L172">    }</span>
+
+}
+
+class PokeDragon extends Dragon {
+    public PokeDragon(String name) {
+<span class="nc" id="L178">        super(name);</span>
+<span class="nc" id="L179">    }</span>
+
+    public void introduce(Player player) {
+<span class="nc" id="L182">        InputHandler input = new InputHandler();</span>
+<span class="nc" id="L183">        System.out.println(&quot;You see a kind of chubby and round orange dragon.&quot;); </span>
+<span class="nc" id="L184">        System.out.println(&quot;It looks more cuddly than frightening except for the claws on it's three fingered hands&quot;);</span>
+<span class="nc" id="L185">        System.out.println(&quot;and the tail that... is on fire?&quot;);</span>
+<span class="nc" id="L186">        System.out.println(&quot;With a roaring voice it says&quot;);</span>
+<span class="nc" id="L187">        System.out.println(&quot;- Char! Char char Charizal!&quot;);</span>
+<span class="nc" id="L188">        System.out.println(&quot;...&quot;);</span>
+<span class="nc" id="L189">        System.out.println(&quot;You stand dumbfounded...&quot;); </span>
+<span class="nc" id="L190">        System.out.println(&quot;You try to look around to see if there is some other thing that is the real monster.&quot;);</span>
+<span class="nc" id="L191">        System.out.println(&quot;Seeing nothing you decide to move closer.&quot;);</span>
+<span class="nc" id="L192">        Boolean attack = true;</span>
+<span class="nc bnc" id="L193" title="All 2 branches missed.">        while (attack){            </span>
+<span class="nc" id="L194">            System.out.println(&quot;\nWhat do you want to do? \n[1] Attack the Dragon! \n[2] Heal.&quot;);</span>
+<span class="nc" id="L195">            String choice = input.readInput(player);</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">            if(choice.equals(&quot;1&quot;)){</span>
+<span class="nc" id="L197">                attack=false;</span>
+<span class="nc" id="L198">                break;</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">            } else if (choice.equals(&quot;2&quot;)) {</span>
+<span class="nc" id="L200">                player.heal(player);    </span>
+            }
+        }
+<span class="nc" id="L203">    }</span>
+
+    public void killsPlayer(Player player) {
+<span class="nc" id="L206">        InputHandler input = new InputHandler();</span>
+<span class="nc" id="L207">        System.out.println(&quot;You swing your weapon at the same time as the dragon swipes at you with it's tail.&quot;);</span>
+<span class="nc" id="L208">        System.out.println(&quot;The flaming tail hit your weapon that immediately begins to melt from the heat.&quot;);</span>
+<span class="nc" id="L209">        System.out.println(&quot;The dragon jumps up and slams into you, breaking several ribs and your back.&quot;);</span>
+<span class="nc" id="L210">        System.out.println(&quot;The pain is surreal and the last thing you see before eternal darkness consumes you is... the dragon dabbing?&quot;);</span>
+<span class="nc" id="L211">        System.out.println(&quot;I told you in the beginning... you are not the hero.&quot;);</span>
+<span class="nc" id="L212">        System.out.println(&quot;Press Enter to continue.&quot;);</span>
+<span class="nc" id="L213">        input.readInput(player);       </span>
+<span class="nc" id="L214">    }</span>
+
+    public void killsDragon(Player player) {
+<span class="nc" id="L217">        InputHandler input = new InputHandler();</span>
+<span class="nc" id="L218">        System.out.println(&quot;You brandish your magnificent sword, and with a powerfull swing creating the image of a wierd looking sphere.&quot;);</span>
+<span class="nc" id="L219">        System.out.println(&quot;It has a black top with yellow marking, a black indented band around is equator and a white bottom half.&quot;);</span>
+<span class="nc" id="L220">        System.out.println(&quot;The sphere hits the dragon which seems to be sucked in to it.&quot;);</span>
+<span class="nc" id="L221">        System.out.println(&quot;All of a sudden they are both gone.&quot;);</span>
+<span class="nc" id="L222">        System.out.println(&quot;You have defeated the dragon Charizal and sent it back where it belong.&quot;);</span>
+<span class="nc" id="L223">        System.out.println(&quot;Who would have known... you were a hero after all.&quot;);</span>
+<span class="nc" id="L224">        System.out.println(&quot;Press Enter to continue.&quot;);</span>
+<span class="nc" id="L225">        input.readInput(player);</span>
+<span class="nc" id="L226">    } </span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

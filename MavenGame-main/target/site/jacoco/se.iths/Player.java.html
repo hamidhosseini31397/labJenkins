@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Player.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths</a> &gt; <span class="el_source">Player.java</span></div><h1>Player.java</h1><pre class="source lang-java linenums">package se.iths;
+
+
+import java.util.concurrent.ThreadLocalRandom;
+
+
+public class Player {
+
+String name;
+int currentHp;
+int maxHp;
+int attack;
+int speed;
+int level;
+int experience;
+int apple;
+int fairy;
+int excalibre;
+int branch; 
+
+
+
+
+<span class="fc" id="L24">Player(String name) {</span>
+<span class="fc" id="L25">this.name = name;</span>
+<span class="fc" id="L26">this.currentHp = 20;</span>
+<span class="fc" id="L27">this.maxHp = 20;</span>
+<span class="fc" id="L28">this.attack = 7;</span>
+<span class="fc" id="L29">this.speed = 10;</span>
+<span class="fc" id="L30">this.level = 1;</span>
+<span class="fc" id="L31">this.experience = 0;</span>
+<span class="fc" id="L32">this.apple = 3;</span>
+<span class="fc" id="L33">this.fairy = 0;</span>
+<span class="fc" id="L34">this.excalibre = 0;</span>
+<span class="fc" id="L35">this.branch = 0;</span>
+<span class="fc" id="L36">}</span>
+
+
+public boolean isAlive() {
+<span class="nc bnc" id="L40" title="All 2 branches missed.">    if (this.currentHp &gt; 0) return true;</span>
+<span class="nc" id="L41">    else return false;</span>
+}
+
+public void displayPlayerStats() {
+<span class="nc" id="L45">    System.out.println(&quot;\nHP: &quot; + currentHp + &quot;/&quot; + maxHp);</span>
+<span class="nc" id="L46">    System.out.println(&quot;Attack: &quot; + attack);</span>
+<span class="nc" id="L47">    System.out.println(&quot;Speed: &quot; + speed);</span>
+<span class="nc" id="L48">    System.out.println(&quot;Level: &quot; + level);</span>
+<span class="nc" id="L49">    System.out.println(&quot;Current EXP: &quot; + getExperience());</span>
+<span class="nc" id="L50">    System.out.println(&quot;Amount of Golden Apples: &quot; + getApple() + &quot;/4&quot;);</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">    if(excalibre==1){System.out.println(&quot;You possess the magical sword Excalibre.&quot;);}</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">    if (fairy==1){System.out.println(&quot;You have recieved the blessing of the Fairy Lady&quot;);}</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">    if(branch==1){System.out.println(&quot;You are carrying a branch, maybe it will come in handy.. Or maybe it wont.&quot;);}</span>
+<span class="nc" id="L54">    System.out.println();</span>
+<span class="nc" id="L55">}</span>
+
+public void attack(Enemy currentMonster) {
+
+<span class="nc" id="L59">    double maxDamage = (attack*1.2);</span>
+
+<span class="nc" id="L61">    double calculateDamage = ThreadLocalRandom.current().nextDouble(attack, maxDamage);</span>
+<span class="nc" id="L62">    long roundedResult = Math.round(calculateDamage);</span>
+<span class="nc" id="L63">    int outgoingDmg = (int) roundedResult;</span>
+
+<span class="nc" id="L65">    currentMonster.decreaseHitPoints(outgoingDmg);</span>
+
+<span class="nc" id="L67">    System.out.println(&quot;You swing your weapon for &quot; + outgoingDmg + &quot; damage!&quot;);</span>
+<span class="nc" id="L68">}</span>
+
+public void heal(Player player){
+<span class="nc bnc" id="L71" title="All 4 branches missed.">    if(currentHp &lt; maxHp &amp;&amp; getApple() &gt; 0) {</span>
+<span class="nc" id="L72">        eatApple();</span>
+<span class="nc" id="L73">        System.out.println(&quot;\nYou consumed a Golden Apple and restored your HP to max! HP: &quot; + getCurrentHp() +&quot;/&quot; + getMaxHp() + &quot;\n&quot;);</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">    } else if (currentHp == maxHp){</span>
+<span class="nc" id="L75">        System.out.println(&quot;\nYou are already at max health.\n&quot;);</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">    } else if (getApple() == 0) {</span>
+<span class="nc" id="L77">            System.out.println(&quot;\nYou are out of Golden Apples!\n&quot;);</span>
+<span class="nc" id="L78">    } else {</span>
+<span class="nc" id="L79">        return;</span>
+    }
+<span class="nc" id="L81">}</span>
+
+public void levelUp() {
+<span class="fc" id="L84">    level++;</span>
+<span class="fc" id="L85">    maxHp += 10;</span>
+<span class="fc" id="L86">    attack += 2;</span>
+<span class="fc" id="L87">    speed += 5;</span>
+<span class="fc" id="L88">    setCurrentHp(maxHp);</span>
+<span class="fc" id="L89">    System.out.println(&quot;Congratulations! You leveled up to level &quot; + getLevel() + &quot;!&quot;);</span>
+<span class="fc" id="L90">    reduceExperience(100);</span>
+<span class="fc" id="L91">}</span>
+
+//Attribute controllers:
+
+public String getName() {
+<span class="nc" id="L96">    return name;</span>
+}
+public void setName(String name) {
+<span class="nc" id="L99">    this.name = name;</span>
+<span class="nc" id="L100">}</span>
+
+public int getCurrentHp() {
+<span class="fc" id="L103">    return currentHp;</span>
+}
+public void setCurrentHp(int currentHp) {
+<span class="fc" id="L106">    this.currentHp = currentHp;</span>
+<span class="fc" id="L107">}</span>
+public void addCurrentHp(int currentHp) {
+<span class="nc" id="L109">    this.currentHp += currentHp;</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">    if (this.currentHp &gt; maxHp){</span>
+<span class="nc" id="L111">        this.currentHp = maxHp;</span>
+<span class="nc" id="L112">        System.out.println(&quot;You are at full health.&quot;);</span>
+    }
+<span class="nc" id="L114">}</span>
+public void decreaseCurrentHp(int currentHp) {
+<span class="nc" id="L116">    this.currentHp -= currentHp;</span>
+<span class="nc" id="L117">    System.out.println(getName() + &quot; HP: &quot; + this.currentHp + &quot;/&quot; + this.maxHp + &quot;\n&quot;);</span>
+<span class="nc" id="L118">}</span>
+
+public int getMaxHp() {
+<span class="nc" id="L121">    return maxHp;</span>
+}
+public void setMaxHp(int maxHp) {
+<span class="nc" id="L124">    this.maxHp = maxHp;</span>
+<span class="nc" id="L125">}</span>
+public void addMaxHp(int maxHp) {
+<span class="nc" id="L127">    this.maxHp += maxHp;</span>
+<span class="nc" id="L128">}</span>
+public void decreaseMaxHp(int maxHp) {
+<span class="nc" id="L130">    this.maxHp -= maxHp;</span>
+<span class="nc" id="L131">}</span>
+
+public int getAttack() {
+<span class="nc" id="L134">    return attack;</span>
+}
+public void setAttack(int attack) {
+<span class="nc" id="L137">    this.attack = attack;</span>
+<span class="nc" id="L138">}</span>
+public void addAttack(int attack) {
+<span class="nc" id="L140">    this.attack += attack; </span>
+<span class="nc" id="L141">}</span>
+public void decreaseAttack(int attack) {
+<span class="nc" id="L143">    this.attack -= attack;</span>
+<span class="nc" id="L144">}</span>
+
+public int getSpeed() {
+<span class="nc" id="L147">    return speed;</span>
+}
+public void setSpeed(int speed) {
+<span class="nc" id="L150">    this.speed = speed;</span>
+<span class="nc" id="L151">}</span>
+public void addSpeed(int speed) {
+<span class="nc" id="L153">    this.speed += speed;</span>
+<span class="nc" id="L154">}</span>
+public void decreaseSpeed(int speed) {
+<span class="nc" id="L156">    this.speed -= speed;</span>
+<span class="nc" id="L157">}</span>
+    
+public int getLevel() {
+<span class="fc" id="L160">    return level;</span>
+}
+public void setLevel(int level) {
+<span class="nc" id="L163">    this.level = level;</span>
+<span class="nc" id="L164">}</span>
+
+public int getExperience() {
+<span class="nc" id="L167">    return experience;</span>
+}
+public void setExperience(int experience) {
+<span class="nc" id="L170">    this.experience = experience;</span>
+<span class="nc" id="L171">}</span>
+public void addExperience(int experience) {
+<span class="nc" id="L173">    this.experience += experience;</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">    if(this.experience &gt;= 100){</span>
+<span class="nc" id="L175">        levelUp();</span>
+    }  
+<span class="nc" id="L177">}</span>
+public void reduceExperience(int experience){
+<span class="fc" id="L179">    this.experience -= experience;</span>
+<span class="fc" id="L180">}</span>
+
+public int getApple() {
+<span class="nc" id="L183">    return apple;</span>
+}
+public void setApple(int apple) {
+<span class="nc" id="L186">    this.apple = apple;</span>
+<span class="nc" id="L187">}</span>
+public void addApple(int apple) {
+<span class="nc" id="L189">    this.apple += apple;</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">    if(this.apple &gt; 4){</span>
+<span class="nc" id="L191">        this.apple = 4;</span>
+<span class="nc" id="L192">        System.out.println(&quot;You can only carry four apples. Your bag is full.&quot;);</span>
+    }
+<span class="nc" id="L194">}</span>
+public void decreseApple(int apple){
+<span class="nc" id="L196">    this.apple -= apple;</span>
+<span class="nc" id="L197">}</span>
+public void eatApple() {
+<span class="nc" id="L199">    currentHp = maxHp;</span>
+<span class="nc" id="L200">    apple--;</span>
+<span class="nc" id="L201">}</span>
+
+public int getFairy() {
+<span class="nc" id="L204">    return fairy;</span>
+}
+public void setFairy(int fairy) {
+<span class="nc" id="L207">    this.fairy = fairy;</span>
+<span class="nc" id="L208">}</span>
+public void addFairy(int fairy) {
+<span class="nc" id="L210">    this.fairy += fairy;</span>
+<span class="nc" id="L211">}</span>
+
+public int getExcalibre() {
+<span class="nc" id="L214">    return excalibre;</span>
+}
+public void setExcalibre(int excalibre) {
+<span class="nc" id="L217">    this.excalibre = excalibre;</span>
+<span class="nc" id="L218">}</span>
+public int getBranch() {
+<span class="nc" id="L220">    return branch;</span>
+}
+public void setBranch(int branch) {
+<span class="nc" id="L223">    this.branch = branch;</span>
+<span class="nc" id="L224">}</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

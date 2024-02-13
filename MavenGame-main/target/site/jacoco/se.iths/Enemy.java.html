@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Enemy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths</a> &gt; <span class="el_source">Enemy.java</span></div><h1>Enemy.java</h1><pre class="source lang-java linenums">package se.iths;
+
+
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
+
+public class Enemy {
+<span class="nc" id="L9">    Random randomgen = new Random();</span>
+
+    protected String name;
+    protected int hitPoints;
+    protected int minAttack;
+    protected int maxAttack;
+    protected int level;
+    protected int speed;
+    protected int expGiven;
+    protected boolean lifesteal;
+    
+<span class="nc" id="L20">    public Enemy(String name, int hitPoints, int minAttack, int maxAttack, int level, int speed, int expGiven, boolean lifesteal) {</span>
+<span class="nc" id="L21">        this.name = name;</span>
+<span class="nc" id="L22">        this.hitPoints = hitPoints;</span>
+<span class="nc" id="L23">        this.minAttack = minAttack;</span>
+<span class="nc" id="L24">        this.maxAttack = maxAttack;</span>
+<span class="nc" id="L25">        this.level = level;</span>
+<span class="nc" id="L26">        this.speed = speed;</span>
+<span class="nc" id="L27">        this.expGiven = expGiven;</span>
+<span class="nc" id="L28">        this.lifesteal = lifesteal;</span>
+<span class="nc" id="L29">    }</span>
+
+<span class="nc" id="L31">    Enemy(int lower, int upper) {</span>
+<span class="nc" id="L32">        List&lt;Monster&gt; monsterList = Arrays.asList(Monster.values());</span>
+<span class="nc" id="L33">        List&lt;Monster&gt; filteredMonsterList = monsterList.stream()</span>
+<span class="nc bnc" id="L34" title="All 4 branches missed.">            .filter((monster) -&gt; (monster.getLevel() &gt;= lower &amp;&amp; monster.getLevel() &lt;= upper))</span>
+<span class="nc" id="L35">            .collect(Collectors.toList());</span>
+
+<span class="nc" id="L37">        Monster monster = filteredMonsterList.get(randomgen.nextInt(filteredMonsterList.size()));</span>
+
+<span class="nc" id="L39">        name = monster.getName();</span>
+<span class="nc" id="L40">        hitPoints = monster.getHp();</span>
+<span class="nc" id="L41">        minAttack = monster.getMinAttack();</span>
+<span class="nc" id="L42">        maxAttack = monster.getMaxAttack();</span>
+<span class="nc" id="L43">        level = monster.getLevel();</span>
+<span class="nc" id="L44">        speed = monster.getSpeed();</span>
+<span class="nc" id="L45">        expGiven = monster.getExpGiven();</span>
+<span class="nc" id="L46">        lifesteal = monster.isLifesteal();</span>
+<span class="nc" id="L47">    }</span>
+
+    public int getHitPoints() {
+<span class="nc" id="L50">        return hitPoints;</span>
+    }
+    public String getName() {
+<span class="nc" id="L53">        return name;</span>
+    }
+    public int getSpeed() {
+<span class="nc" id="L56">        return speed;</span>
+    }
+    public int getLevel() {
+<span class="nc" id="L59">        return level;</span>
+    }
+    public void decreaseHitPoints(int hitPoints) {
+<span class="nc" id="L62">        this.hitPoints -= hitPoints;</span>
+<span class="nc" id="L63">    }</span>
+    public void attack(Player player) { 
+<span class="nc" id="L65">        int attackDmg = ThreadLocalRandom.current().nextInt(minAttack, maxAttack + 1);</span>
+<span class="nc" id="L66">        System.out.println(&quot;The &quot; + name + &quot; attacks you for &quot; + attackDmg);</span>
+<span class="nc" id="L67">        player.decreaseCurrentHp(attackDmg);</span>
+
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (lifesteal) {hitPoints += (attackDmg/2);</span>
+<span class="nc" id="L70">        System.out.println(&quot;It heals from your blood.&quot;);}</span>
+<span class="nc" id="L71">    }</span>
+
+    public void monsterDeath(Player player) {
+<span class="nc" id="L74">       System.out.println(&quot;You killed the &quot; + name + &quot; and got &quot; + expGiven + &quot; experience.&quot;); </span>
+<span class="nc" id="L75">       player.addExperience(expGiven); </span>
+<span class="nc" id="L76">    } </span>
+
+    public boolean isAlive() {
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        if (hitPoints &gt; 0) {</span>
+<span class="nc" id="L80">            return true;</span>
+        } else {
+<span class="nc" id="L82">            return false;</span>
+        }
+    }
+
+<span class="nc" id="L86">    public void introduce()  throws InterruptedException {}</span>
+}
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

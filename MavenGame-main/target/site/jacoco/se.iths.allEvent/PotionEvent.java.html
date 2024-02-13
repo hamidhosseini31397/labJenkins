@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PotionEvent.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths.allEvent</a> &gt; <span class="el_source">PotionEvent.java</span></div><h1>PotionEvent.java</h1><pre class="source lang-java linenums">package se.iths.allEvent;
+
+import se.iths.*;
+
+
+public class PotionEvent extends Event {
+    
+    public PotionEvent() {
+<span class="nc" id="L9">    super();</span>
+<span class="nc" id="L10">    this.eventLevel = 2;</span>
+<span class="nc" id="L11">    }</span>
+
+@Override
+public void execute(Player player, InputHandler inputHandler) {
+
+<span class="nc" id="L16">    System.out.println(&quot;In the heart of the kingdom, you stumble upon the Grand Apothecary's alchemy shop. &quot; + </span>
+            &quot;The Grand Apothecary, a wise old man, said he knew about special herbs rumored to be extinct but he was convinced of the opposite. &quot; + 
+            &quot;He tells you about a rare herb called Haloe Waera, concealed deep within a cave at the southern edge of the kingdom.&quot;);
+
+<span class="nc" id="L20">            pressEnterToContinue(player);</span>
+            
+<span class="nc" id="L22">            System.out.println(&quot;The Grand Apothecary senses your strength and determination and hands you a weathered map, pinpointing the exact location of the cave and asks you to aquire the herb for him. &quot; +</span>
+            &quot;He said that with this herb, he could make a potion to boost your health. &quot; +
+            &quot;You ask if there's any dangers you should be aware of. The old man shrugs but you accept and prapare yourself accordingly before you set out.&quot;);
+           
+<span class="nc" id="L26">            pressEnterToContinue(player);</span>
+
+<span class="nc" id="L28">            System.out.println(&quot;With the map in hand you arrive at your destination. Through your efforts you establish that the cave has a labyrinth-like system. &quot; + </span>
+            &quot;You enter and is taken by the illuminated soft glow of phosphorsent moss clinging to the walls. It's as if it's alive, whispering secrets to you. &quot; + 
+            &quot;The air has a mysterious stillness to it.. It's almost intoxicating. &quot; + 
+            &quot;You navigate through narrow passages and crystal-like chambers until you find something plant-like with luminescent, succulent green leaves arranged in a rosette. &quot; +
+            &quot;They have sharp, pinkish spines along their edge and is quite thick, but yet soft. This must be it you think for yourself and pack as many as you can carry.&quot;);
+            
+<span class="nc" id="L34">            pressEnterToContinue(player);</span>
+
+<span class="nc" id="L36">            System.out.println(&quot;\nOnce you returned with the Haloe Waera and handed over the efforts of your gatheringexpedition, the Grand Apothecarys eyes sparkle with appreciation. &quot; + </span>
+            &quot;He gives you a silent nod and begins to instruct you in the art of potion-making. Together, you brewed a concoction that held the essence of the Haloe Waera. &quot; + 
+            &quot;Upon completion, you are presented with a bright lightgreen faintly glowing liquid in a crystal flask. Eager to experience it's effect &quot; + 
+            &quot;you take a sip and feel an immediate surge of energy and vitality. The Grand Apothecary smiles knowingly, sharing a final piece of herbal wisdom before bidding you farewell.&quot; + 
+            &quot;\nMax HP: + 10\n&quot;);
+
+<span class="nc" id="L42">            player.addMaxHp(10);</span>
+<span class="nc" id="L43">            player.addCurrentHp(10);</span>
+<span class="nc" id="L44">            gainEXP(player);</span>
+
+
+<span class="nc" id="L47">}</span>
+
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

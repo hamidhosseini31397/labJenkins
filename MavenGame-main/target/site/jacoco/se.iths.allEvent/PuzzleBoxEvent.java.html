@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PuzzleBoxEvent.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths.allEvent</a> &gt; <span class="el_source">PuzzleBoxEvent.java</span></div><h1>PuzzleBoxEvent.java</h1><pre class="source lang-java linenums">package se.iths.allEvent;
+
+import se.iths.*;
+
+public class PuzzleBoxEvent extends Event {
+    
+    public PuzzleBoxEvent() {
+<span class="nc" id="L8">        super();</span>
+<span class="nc" id="L9">        this.eventLevel = 3;</span>
+<span class="nc" id="L10">    }</span>
+    
+    @Override
+    public void execute(Player player, InputHandler inputHandler) {
+        
+<span class="nc" id="L15">    System.out.println(&quot;While exploring the outskirts of a smaller town of god knows where, the local merchant notices your curiousity as you inspect his wares&quot; + </span>
+    &quot;\nWith a discerning smile, he approaches and says 'Ah, I see you have an eye for the peculiar. It's this puzzle box i presume?'&quot; + 
+    &quot;\nHe presents it to you, adding 'I've had this in my posession for as long as I can remember. It's secrets elude me..&quot; + 
+    &quot;\nPerhaps a fresh perpective is what it needs. Take it, and if your crack it's mystery, consider it your reward.&quot;);
+  
+<span class="nc" id="L20">        String correctAnswer = &quot;river&quot;;</span>
+<span class="nc" id="L21">        int attempts = 0;</span>
+
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        while (attempts &lt; 10) {</span>
+<span class="nc" id="L24">            System.out.println(&quot;\nRiddle: What runs but never walks, murmurs but never talks, has a bed but never sleeps and has a mouth but never eats?&quot;);</span>
+<span class="nc" id="L25">            String userGuess = input.readInput(player);</span>
+
+<span class="nc bnc" id="L27" title="All 2 branches missed.">            if (checkGuess(userGuess, correctAnswer)) {</span>
+<span class="nc" id="L28">                System.out.println(&quot;\nCongratulations! You've successfully solved the riddle and obtained a locket with an old picture of a unknow lady from the box.&quot; + </span>
+                &quot;\nIt turns out to be the merchant's grandmother, and he offers to trade it for anything in his shop. Since it's worthless to you, you accept.&quot; + 
+                &quot;\n\nYou pick out a few items to aid you on your journey.\nHP: + 10\nAttack: + 2\nSpeed: + 3&quot;);
+<span class="nc" id="L31">                player.addMaxHp(10);</span>
+<span class="nc" id="L32">                player.addCurrentHp(10);</span>
+<span class="nc" id="L33">                player.addAttack(2);</span>
+<span class="nc" id="L34">                player.addSpeed(3);</span>
+<span class="nc" id="L35">                gainEXP(player);</span>
+<span class="nc" id="L36">                break;</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            } else if (userGuess.equals(&quot;/stats&quot;)){</span>
+<span class="nc" id="L38">                    continue;</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            } else if (userGuess.equals(&quot;/menu&quot;)){</span>
+<span class="nc" id="L40">                    continue;</span>
+            } else {
+<span class="nc" id="L42">                System.out.println(&quot;Nothing happens. Try again.&quot;);</span>
+<span class="nc" id="L43">                attempts++;</span>
+                }   
+             
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (attempts == 5) {</span>
+<span class="nc" id="L47">                System.out.println(&quot;HINT: It's a five letter word.&quot;);</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            } else if (attempts == 8) {</span>
+<span class="nc" id="L49">                System.out.println(&quot;HINT2: It also contains water.&quot;);</span>
+                }
+            
+        }
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            if (attempts &gt;= 10) {</span>
+<span class="nc" id="L54">            System.out.println(&quot;Unfortunately, you give up and were not able to solve the riddle, so you handed back the box to the merchant. Disappointing.&quot;);</span>
+<span class="nc" id="L55">            gainEXP(player);</span>
+            }
+<span class="nc" id="L57">    }</span>
+    
+    private static boolean checkGuess(String userGuess, String correctAnswer) {
+<span class="nc" id="L60">        return userGuess.equals(correctAnswer);</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

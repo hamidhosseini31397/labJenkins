@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HardlyCodedEvent.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths.allEvent</a> &gt; <span class="el_source">HardlyCodedEvent.java</span></div><h1>HardlyCodedEvent.java</h1><pre class="source lang-java linenums">package se.iths.allEvent;
+
+import se.iths.*;
+
+
+public class HardlyCodedEvent extends Event {
+        Player player;
+        
+        public HardlyCodedEvent() {
+<span class="nc" id="L10">                super();</span>
+<span class="nc" id="L11">                this.eventLevel = 20;</span>
+<span class="nc" id="L12">        }     </span>
+        @Override
+        public void execute(Player player, InputHandler InputHandler) {
+                
+<span class="nc" id="L16">                intro(player);</span>
+<span class="nc" id="L17">                boolean helpingHand = true;</span>
+<span class="nc bnc" id="L18" title="All 2 branches missed.">                while (helpingHand){</span>
+<span class="nc" id="L19">                System.out.println(&quot;What do you want to do?? \n[1] Help the poor man. \n[2] Rob him blind. \n[3] Leave him on the road. You have important buisness to atend.&quot;);</span>
+<span class="nc" id="L20">                String giveHelpingHand = input.readInput(player);     </span>
+<span class="nc bnc" id="L21" title="All 4 branches missed.">                switch (giveHelpingHand){</span>
+                        case &quot;1&quot;:
+<span class="nc" id="L23">                        AdventureGame.clearScreen();</span>
+<span class="nc" id="L24">                        System.out.println(&quot;Press ENTER to continue&quot;);</span>
+<span class="nc" id="L25">                        System.out.println(&quot;You decide to help him out and together you work to fix the cart.&quot;);</span>
+<span class="nc" id="L26">                        input.readInput(player);</span>
+<span class="nc" id="L27">                        System.out.println(&quot;It takes a fair bit of time and effort, but you get the work done.&quot;);</span>
+<span class="nc" id="L28">                        input.readInput(player);</span>
+<span class="nc" id="L29">                        System.out.println(&quot;The man looks at you and smiles. - Thank you young man. I thought I'ld be stuck here all night.&quot;);</span>
+<span class="nc" id="L30">                        input.readInput(player);</span>
+<span class="nc" id="L31">                        System.out.println(&quot;Well a promise is a promise. He sticks his hand into the pile of sacks.&quot;);</span>
+<span class="nc" id="L32">                        input.readInput(player);</span>
+<span class="nc" id="L33">                        int randomLoot = randomgen.nextInt(100) + 1;</span>
+<span class="nc" id="L34">                        getCaseFromRandom(randomLoot);</span>
+<span class="nc" id="L35">                        randomReward(player);</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">                        if (!player.isAlive()) {return;}</span>
+<span class="nc" id="L37">                        System.out.println(&quot;You gained experience.&quot;);</span>
+<span class="nc" id="L38">                        player.addExperience(100);</span>
+<span class="nc" id="L39">                        helpingHand = false;</span>
+<span class="nc" id="L40">                        break;</span>
+                        case &quot;2&quot;:
+<span class="nc" id="L42">                        AdventureGame.clearScreen();</span>
+<span class="nc" id="L43">                        System.out.println(&quot;You pull out your weapon and threaten the old man. He gives you his moneypouch while cursing you.&quot;);</span>
+<span class="nc" id="L44">                        input.readInput(player);</span>
+<span class="nc" id="L45">                        System.out.println(&quot;While walking away you feel yourself loosing strenght.&quot;);</span>
+<span class="nc" id="L46">                        player.decreaseAttack(3);</span>
+<span class="nc" id="L47">                        player.decreaseMaxHp(5);</span>
+<span class="nc" id="L48">                        player.decreaseSpeed(3);</span>
+<span class="nc" id="L49">                        System.out.println(&quot;Max HP : - 5 \nCurrent HP : - 5 \nAttack : - 3 \nSpeed : - 3 &quot;);</span>
+<span class="nc" id="L50">                        player.decreaseCurrentHp(5);</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">                        if (!player.isAlive()) {return;}</span>
+<span class="nc" id="L52">                        pressEnterToContinue(player);</span>
+<span class="nc" id="L53">                        helpingHand = false;</span>
+<span class="nc" id="L54">                        player.setLevel(6);</span>
+<span class="nc" id="L55">                        break;</span>
+                        case &quot;3&quot;:
+<span class="nc" id="L57">                        AdventureGame.clearScreen();</span>
+<span class="nc" id="L58">                        System.out.println(&quot;You continue past him.&quot;);</span>
+<span class="nc" id="L59">                        helpingHand = false;</span>
+<span class="nc" id="L60">                        player.setLevel(6);</span>
+<span class="nc" id="L61">                        pressEnterToContinue(player);</span>
+
+                }
+        
+        }
+
+                        
+<span class="nc" id="L68">        }      </span>
+
+        public void intro(Player player){
+               
+<span class="nc" id="L72">                System.out.println(&quot;Press ENTER to continue&quot;);</span>
+<span class="nc" id="L73">                System.out.println(&quot;At evening you walk along the path and come across an old man with a cart laden with sacks and boxes. \nThe carts axle is broken and the man looks feeble and distraught.&quot;);</span>
+<span class="nc" id="L74">                input.readInput(player);</span>
+<span class="nc" id="L75">                System.out.println(&quot;He sees you and his face brightens.&quot;);</span>
+<span class="nc" id="L76">                input.readInput(player);</span>
+<span class="nc" id="L77">                System.out.println(&quot;- Hoy there young adventurer! Would you mind helping an old man? \nI have a new axle for the cart but my feeble arms and back \nprevents me from lifting the cart to install it.&quot;);</span>
+<span class="nc" id="L78">                input.readInput(player);</span>
+<span class="nc" id="L79">                System.out.println(&quot;I'll reward you with whatever my hand first touches when I reach inside my cart.&quot;);</span>
+<span class="nc" id="L80">        }</span>
+
+        public void help(Player player, InputHandler inputHandler){
+<span class="nc" id="L83">                boolean helping = true;</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">                while (helping){</span>
+
+<span class="nc" id="L86">                        AdventureGame.clearScreen();</span>
+<span class="nc" id="L87">                        System.out.println(&quot;Press ENTER to continue&quot;);</span>
+<span class="nc" id="L88">                        System.out.println(&quot;You decide to help him out and together you work to fix the cart.&quot;);</span>
+<span class="nc" id="L89">                        input.readInput(player);</span>
+<span class="nc" id="L90">                        System.out.println(&quot;It takes a fair bit of time and effort, but you get the work done.&quot;);</span>
+<span class="nc" id="L91">                        input.readInput(player);</span>
+<span class="nc" id="L92">                        System.out.println(&quot;The man looks at you and smiles. - Thank you young man. I thought I'ld be stuck here all night.&quot;);</span>
+<span class="nc" id="L93">                        input.readInput(player);</span>
+<span class="nc" id="L94">                        System.out.println(&quot;Well a promise is a promise. He sticks his hand into the pile of sacks.&quot;);</span>
+<span class="nc" id="L95">                        input.readInput(player);</span>
+<span class="nc" id="L96">                        int randomLoot = randomgen.nextInt(100) + 1;</span>
+<span class="nc" id="L97">                        getCaseFromRandom(randomLoot);</span>
+<span class="nc" id="L98">                        randomReward(player);</span>
+                     
+                }
+<span class="nc" id="L101">        }</span>
+
+        
+
+        public void randomReward(Player player){
+                
+<span class="nc" id="L107">                boolean loot = true;</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">                while (loot){</span>
+<span class="nc" id="L109">                        int randomLoot = randomgen.nextInt(100) + 1;</span>
+<span class="nc" id="L110">                        getCaseFromRandom(randomLoot);</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">                        if (loot == false){</span>
+<span class="nc" id="L112">                                break;</span>
+                        }
+
+<span class="nc bnc" id="L115" title="All 9 branches missed.">                        switch (randomLoot){</span>
+                                case 1:
+<span class="nc" id="L117">                                System.out.println(&quot;He pulls out a beautiful sword and his smile immediately disappears.&quot;);</span>
+<span class="nc" id="L118">                                input.readInput(player);</span>
+<span class="nc" id="L119">                                System.out.println(&quot;- Just my luck. First my cart breaks and now I have to give away a legendary sword.&quot;);</span>
+<span class="nc" id="L120">                                input.readInput(player);</span>
+<span class="nc" id="L121">                                System.out.println(&quot;But by my honour I'll stand by my word.&quot;);</span>
+<span class="nc" id="L122">                                input.readInput(player);</span>
+<span class="nc" id="L123">                                System.out.println(&quot;You've gained: Legendary sword Excalibre \nAttack : + 100 \nSpeed : + 100 \nMax HP : + 300 \nCurrent HP : + 300&quot;);</span>
+<span class="nc" id="L124">                                player.setExcalibre(1);</span>
+<span class="nc" id="L125">                                player.addAttack(100);</span>
+<span class="nc" id="L126">                                player.addSpeed(100);</span>
+<span class="nc" id="L127">                                player.addMaxHp(300);</span>
+<span class="nc" id="L128">                                player.addCurrentHp(300);</span>
+<span class="nc" id="L129">                                boolean hero = true;</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">                                while (hero){</span>
+<span class="nc" id="L131">                                        System.out.println(&quot;Press ENTER to continue.&quot;);</span>
+<span class="nc" id="L132">                                        String enter = input.readInput(player);</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">                                        if (enter.isEmpty()){</span>
+<span class="nc" id="L134">                                                hero = false;</span>
+<span class="nc" id="L135">                                                loot = false;</span>
+<span class="nc" id="L136">                                                break;</span>
+                                        }else {
+                                        }
+                                }
+<span class="nc" id="L140">                                break;</span>
+
+                                case 2:
+<span class="nc" id="L143">                                System.out.println(&quot;He pulls out a sleek, curvy shortsword and hands it to you.&quot;);</span>
+<span class="nc" id="L144">                                input.readInput(player);</span>
+<span class="nc" id="L145">                                System.out.println(&quot;- Now thats a blade of marvels. It glows blue if there are orcs around.&quot;);</span>
+<span class="nc" id="L146">                                input.readInput(player);</span>
+<span class="nc" id="L147">                                System.out.println(&quot;You've gained: Stung. \nAttack : + 20 \nSpeed + 20&quot;);</span>
+<span class="nc" id="L148">                                player.addAttack(20);</span>
+<span class="nc" id="L149">                                player.addSpeed(20);</span>
+<span class="nc" id="L150">                                boolean sting = true;</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">                                while (sting){</span>
+<span class="nc" id="L152">                                        System.out.println(&quot;Press ENTER to continue.&quot;);</span>
+<span class="nc" id="L153">                                        String enter = input.readInput(player);</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">                                        if (enter.isEmpty()){</span>
+<span class="nc" id="L155">                                                sting = false;</span>
+<span class="nc" id="L156">                                                loot = false;</span>
+<span class="nc" id="L157">                                                break;</span>
+                                        }else {
+                                        }                                
+                                }
+<span class="nc" id="L161">                                break;</span>
+                                case 3:
+<span class="nc" id="L163">                                System.out.println(&quot;He pulls out a breastplate of peculiar shape. It looks almost like the gaunt chest of a burnt demon.&quot;);</span>
+<span class="nc" id="L164">                                input.readInput(player);</span>
+<span class="nc" id="L165">                                System.out.println(&quot;- Ah. This is a very effective armor, created by fusing ebony with the liver of a Deedra.&quot;);</span>
+<span class="nc" id="L166">                                input.readInput(player);</span>
+<span class="nc" id="L167">                                System.out.println(&quot;You've gained: Deedric armor. \nMax HP : + 20 \nSpeed : + 15&quot;);</span>
+<span class="nc" id="L168">                                player.addMaxHp(20);</span>
+<span class="nc" id="L169">                                player.addSpeed(15);</span>
+<span class="nc" id="L170">                                boolean armor = true;</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">                                while (armor){</span>
+<span class="nc" id="L172">                                        System.out.println(&quot;Press ENTER to continue.&quot;);</span>
+<span class="nc" id="L173">                                        String enter = input.readInput(player);</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">                                        if (enter.isEmpty()){</span>
+<span class="nc" id="L175">                                                armor = false;</span>
+<span class="nc" id="L176">                                                loot = false;</span>
+<span class="nc" id="L177">                                                break;</span>
+                                        }else {
+                                        }                                
+                                } 
+<span class="nc" id="L181">                                break;</span>
+                                case 4:
+
+<span class="nc" id="L184">                                System.out.println(&quot;He pulls out a branch that holds two golden apples and hands it to you.&quot;);</span>
+<span class="nc" id="L185">                                input.readInput(player);</span>
+<span class="nc" id="L186">                                System.out.println(&quot;- Oh these are very interesting. They are said to provide vitality to even those close to death.&quot;);</span>
+<span class="nc" id="L187">                                input.readInput(player);</span>
+<span class="nc" id="L188">                                System.out.println(&quot;You remove the apples from the branch and put them in your pouch.&quot;);</span>
+<span class="nc" id="L189">                                player.addApple(2);</span>
+<span class="nc" id="L190">                                System.out.println(&quot;You have &quot; + player.getApple() + &quot;/4 golden apples.&quot;);</span>
+<span class="nc" id="L191">                                input.readInput(player);</span>
+<span class="nc" id="L192">                                boolean apple = true;</span>
+<span class="nc bnc" id="L193" title="All 2 branches missed.">                                while (apple) {</span>
+<span class="nc" id="L194">                                        System.out.println(&quot;Do you want to keep the branch? \n[1] Yes\n[2] No&quot;);</span>
+<span class="nc" id="L195">                                        String branch = input.readInput(player);</span>
+<span class="nc bnc" id="L196" title="All 6 branches missed.">                                        if (branch.equals(&quot;1&quot;) || branch.equals(&quot;yes&quot;) || branch.equals(&quot;y&quot;)) {</span>
+<span class="nc" id="L197">                                                System.out.println(&quot;You keep the branch. Who knows? It could be useful.&quot;);</span>
+<span class="nc" id="L198">                                                player.setBranch(1);</span>
+<span class="nc" id="L199">                                                pressEnterToContinue(player);</span>
+<span class="nc" id="L200">                                                apple = false;</span>
+<span class="nc" id="L201">                                                loot = false;</span>
+<span class="nc" id="L202">                                                break;</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">                                        } else if (branch.equals(&quot;/menu&quot;)){</span>
+<span class="nc bnc" id="L204" title="All 6 branches missed.">                                        } else if (branch.equals(&quot;2&quot;)|| branch.equals(&quot;no&quot;)||branch.equals(&quot;n&quot;)){</span>
+<span class="nc" id="L205">                                                System.out.println(&quot;You throw the branch into the ditch.&quot;);</span>
+<span class="nc" id="L206">                                                pressEnterToContinue(player);</span>
+<span class="nc" id="L207">                                                apple = false;</span>
+<span class="nc" id="L208">                                                loot = false;</span>
+<span class="nc" id="L209">                                                break;</span>
+                                        }
+                                }
+<span class="nc" id="L212">                                break;</span>
+                                case 5:
+<span class="nc" id="L214">                                System.out.println(&quot;He pulls out a golden dagger with a ruby fitted into the hilt.&quot;);</span>
+<span class="nc" id="L215">                                input.readInput(player);</span>
+<span class="nc" id="L216">                                System.out.println(&quot;- Ooh be careful when using this one. It was found in the ruins of a once amazing city.&quot;);</span>
+<span class="nc" id="L217">                                input.readInput(player);</span>
+<span class="nc" id="L218">                                System.out.println(&quot;- It is said that a great evil sleeps there and that everything in the ruins are connected to it.&quot;);</span>
+<span class="nc" id="L219">                                input.readInput(player);</span>
+<span class="nc" id="L220">                                boolean rubyDagger = true;</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">                                while (rubyDagger){</span>
+<span class="nc" id="L222">                                        System.out.println(&quot;Do you want to take the dagger?\n[1] Yes\n[2] No&quot;);</span>
+<span class="nc" id="L223">                                        String dagger = input.readInput(player);</span>
+<span class="nc bnc" id="L224" title="All 6 branches missed.">                                        if (dagger.equals(&quot;1&quot;) || dagger.equals(&quot;yes&quot;) || dagger.equals(&quot;y&quot;)) {</span>
+<span class="nc" id="L225">                                                System.out.println(&quot;You've gained: Ruby hilted dagger.\nMax HP : - 10 \nCurrent HP : - 10 \nAttack : + 15&quot;);</span>
+<span class="nc" id="L226">                                                player.decreaseMaxHp(10);</span>
+<span class="nc" id="L227">                                                player.addAttack(15);</span>
+<span class="nc" id="L228">                                                player.decreaseCurrentHp(10);</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">                                                if (!player.isAlive()) {return;}</span>
+<span class="nc" id="L230">                                                pressEnterToContinue(player);</span>
+<span class="nc" id="L231">                                                rubyDagger = false;</span>
+<span class="nc" id="L232">                                                loot = false;</span>
+<span class="nc" id="L233">                                                break;</span>
+                                                
+<span class="nc bnc" id="L235" title="All 2 branches missed.">                                        } else if (dagger.equals(&quot;/menu&quot;)){</span>
+<span class="nc bnc" id="L236" title="All 6 branches missed.">                                        } else if (dagger.equals(&quot;2&quot;)|| dagger.equals(&quot;no&quot;)||dagger.equals(&quot;n&quot;)) {</span>
+<span class="nc" id="L237">                                                System.out.println(&quot;You decline the dagger and the man shrugs and puts it back into the cart.&quot;);</span>
+<span class="nc" id="L238">                                                pressEnterToContinue(player);</span>
+<span class="nc" id="L239">                                                rubyDagger = false;</span>
+<span class="nc" id="L240">                                                loot = false;</span>
+<span class="nc" id="L241">                                                break;</span>
+                                        }
+                                }
+<span class="nc" id="L244">                                break;</span>
+                                case 6:
+<span class="nc" id="L246">                                System.out.println(&quot;He pulls out a helmet that has a faceplate fastened with a long thing spike in the front.&quot;);</span>
+<span class="nc" id="L247">                                input.readInput(player);</span>
+<span class="nc" id="L248">                                System.out.println(&quot;- This is an interesting piece. It belongs to an elite fighting group based in the desert city Astaper.&quot;);</span>
+<span class="nc" id="L249">                                input.readInput(player);</span>
+<span class="nc" id="L250">                                System.out.println(&quot;- The soldiers are all slave-eunuchs and very effective warriors.&quot;);</span>
+<span class="nc" id="L251">                                input.readInput(player);</span>
+<span class="nc" id="L252">                                System.out.println(&quot;You've gained: Helm of the unsallied. \nMax HP : + 15 \nCurrent HP : + 15&quot;);</span>
+<span class="nc" id="L253">                                player.addMaxHp(15);</span>
+<span class="nc" id="L254">                                player.addCurrentHp(15);</span>
+<span class="nc" id="L255">                                boolean helmet = true;</span>
+<span class="nc bnc" id="L256" title="All 2 branches missed.">                                while (helmet){</span>
+<span class="nc" id="L257">                                        System.out.println(&quot;Press ENTER to continue.&quot;);</span>
+<span class="nc" id="L258">                                        String enter = input.readInput(player);</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">                                        if (enter.isEmpty()){</span>
+<span class="nc" id="L260">                                                helmet = false;</span>
+<span class="nc" id="L261">                                                loot = false;</span>
+<span class="nc" id="L262">                                                break;</span>
+                                        }else {
+                                        }                                
+                                } 
+<span class="nc" id="L266">                                break;</span>
+                                case 7:
+<span class="nc" id="L268">                                System.out.println(&quot;He pulls out a beautiful green cloak and hands it to you.&quot;);</span>
+<span class="nc" id="L269">                                input.readInput(player);</span>
+<span class="nc" id="L270">                                System.out.println(&quot;You've gained: Green cloak. It's pretty but not very useful.&quot;);</span>
+<span class="nc" id="L271">                                boolean cloak = true;</span>
+<span class="nc bnc" id="L272" title="All 2 branches missed.">                                while (cloak){</span>
+<span class="nc" id="L273">                                        System.out.println(&quot;Press ENTER to continue.&quot;);</span>
+<span class="nc" id="L274">                                        String enter = input.readInput(player);</span>
+<span class="nc bnc" id="L275" title="All 2 branches missed.">                                        if (enter.isEmpty()){</span>
+<span class="nc" id="L276">                                                cloak = false;</span>
+<span class="nc" id="L277">                                                loot = false;</span>
+<span class="nc" id="L278">                                                break;</span>
+                                        }else {
+                                        }                                
+                                } 
+<span class="nc" id="L282">                                break;</span>
+                                case 8:
+<span class="nc" id="L284">                                System.out.println(&quot;He pulls out a dirty rag.&quot;);</span>
+<span class="nc" id="L285">                                input.readInput(player);</span>
+<span class="nc" id="L286">                                System.out.println(&quot;- Whew seems to be my lucky day.&quot;);</span>
+<span class="nc" id="L287">                                input.readInput(player);</span>
+<span class="nc" id="L288">                                System.out.println(&quot;You've gained: Dirty rag.&quot;);</span>
+<span class="nc" id="L289">                                boolean rag = true;</span>
+<span class="nc bnc" id="L290" title="All 2 branches missed.">                                while (rag){</span>
+<span class="nc" id="L291">                                        System.out.println(&quot;Press ENTER to continue.&quot;);</span>
+<span class="nc" id="L292">                                        String enter = input.readInput(player);</span>
+<span class="nc bnc" id="L293" title="All 2 branches missed.">                                        if (enter.isEmpty()){</span>
+<span class="nc" id="L294">                                                rag = false;</span>
+<span class="nc" id="L295">                                                loot = false;</span>
+<span class="nc" id="L296">                                                break;</span>
+                                        }else {
+                                        }                                
+                                }
+                                break;
+                                default:
+                        
+                        }
+                }
+<span class="nc" id="L305">        }</span>
+
+        public int getCaseFromRandom(int randomLoot){
+
+<span class="nc bnc" id="L309" title="All 2 branches missed.">                        if (randomLoot == 100){</span>
+<span class="nc" id="L310">                                return randomLoot = 1;</span>
+<span class="nc bnc" id="L311" title="All 4 branches missed.">                        } else if (randomLoot &lt;= 99 &amp;&amp; randomLoot &gt; 90) {</span>
+<span class="nc" id="L312">                                return randomLoot = 2;</span>
+<span class="nc bnc" id="L313" title="All 4 branches missed.">                        } else if (randomLoot &lt;= 89 &amp;&amp; randomLoot &gt; 70){</span>
+<span class="nc" id="L314">                                return randomLoot = 3;</span>
+<span class="nc bnc" id="L315" title="All 4 branches missed.">                        } else if (randomLoot &lt;= 69 &amp;&amp; randomLoot &gt; 50){</span>
+<span class="nc" id="L316">                                return randomLoot = 4;</span>
+<span class="nc bnc" id="L317" title="All 4 branches missed.">                        } else if (randomLoot &lt;= 49 &amp;&amp; randomLoot &gt; 30){</span>
+<span class="nc" id="L318">                                return randomLoot = 5;</span>
+<span class="nc bnc" id="L319" title="All 4 branches missed.">                        } else if (randomLoot &lt;= 29 &amp;&amp; randomLoot &gt; 10){</span>
+<span class="nc" id="L320">                                return randomLoot = 6;</span>
+<span class="nc bnc" id="L321" title="All 4 branches missed.">                        } else if (randomLoot &lt;= 9 &amp;&amp; randomLoot &lt; 1) {</span>
+<span class="nc" id="L322">                                return randomLoot = 7;</span>
+                        } else {
+<span class="nc" id="L324">                                return randomLoot = 8;</span>
+                        }
+
+        }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

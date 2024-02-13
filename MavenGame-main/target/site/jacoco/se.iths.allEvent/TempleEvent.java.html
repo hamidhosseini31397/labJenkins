@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TempleEvent.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths.allEvent</a> &gt; <span class="el_source">TempleEvent.java</span></div><h1>TempleEvent.java</h1><pre class="source lang-java linenums">package se.iths.allEvent;
+
+import se.iths.*;
+
+public class TempleEvent extends Event {
+
+    public TempleEvent() {
+<span class="nc" id="L8">        super();</span>
+<span class="nc" id="L9">        this.eventLevel = 6;</span>
+<span class="nc" id="L10">    }</span>
+
+    @Override
+    public void execute(Player player, InputHandler inputHandler) {
+
+<span class="nc" id="L15">        boolean altar = true;</span>
+        
+<span class="nc bnc" id="L17" title="All 2 branches missed.">        while (altar) {</span>
+<span class="nc" id="L18">        System.out.println(&quot;You find yourself in a dimly lit, ancient temple filled with mysterious artifacts.\n&quot; +</span>
+                &quot;You notice a glimmering object on an altar. What do you want to do?\n\n&quot; +
+                &quot;1. Approach the altar and inspect the object.\n&quot; +
+                &quot;2. Continue exploring the temple without touching anything.&quot;);
+
+<span class="nc" id="L23">        String choice = inputHandler.readInput(player);</span>
+
+<span class="nc bnc" id="L25" title="All 3 branches missed.">            switch (choice) {</span>
+                case &quot;1&quot;:
+<span class="nc" id="L27">                    embraceOrNegotiate(player, input);</span>
+<span class="nc" id="L28">                    altar = false;</span>
+<span class="nc" id="L29">                    break;</span>
+                case &quot;2&quot;:
+<span class="nc" id="L31">                    investigateOrNo(player, input);</span>
+<span class="nc" id="L32">                    altar = false;</span>
+                    break;
+                default:           
+            }
+    
+        }   
+
+<span class="nc" id="L39">    }</span>
+
+    public void embraceOrNegotiate(Player player, InputHandler inputHandler) {
+    
+<span class="nc" id="L43">    boolean spirit = true;</span>
+
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        while(spirit) {</span>
+<span class="nc" id="L46">        System.out.println(&quot;\nYou cautiously approach the altar and inspect the glimmering object.\n&quot; +</span>
+        &quot;It's a cursed gemstone! The moment you touch it, a mysterious guardian spirit appears.\n&quot; +
+        &quot;The spirit reveals that the gemstone holds ancient power and offers you a choice:\n\n&quot; +
+        &quot;1. Embrace the power and accept the consequences.\n&quot; +
+        &quot;2. Try to negotiate with the spirit or find another solution.&quot;);
+
+<span class="nc" id="L52">            String secondChoice = inputHandler.readInput(player);</span>
+
+<span class="nc bnc" id="L54" title="All 3 branches missed.">            switch (secondChoice) {</span>
+                case &quot;1&quot;:
+<span class="nc" id="L56">                    System.out.println(&quot;\nYou decide to embrace the power of the gemstone, accepting the consequences.\n&quot; +</span>
+                    &quot;The guardian spirit warns you that the power comes at a great cost.\n&quot; +
+                    &quot;As the power surges through you, your body can't handle it, and you collapse.\n&quot; +
+                    &quot;You died.&quot;);
+<span class="nc" id="L60">                    player.setCurrentHp(0);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">                    if (!player.isAlive()) {return;}</span>
+<span class="nc" id="L62">                    spirit = false;</span>
+<span class="nc" id="L63">                    break;</span>
+                case &quot;2&quot;:
+<span class="nc" id="L65">                    System.out.println(&quot;\nYou attempt to negotiate with the spirit or find another solution.\n&quot; +</span>
+                    &quot;The spirit, however, insists that the power of the gemstone cannot be tamed.\n&quot; +
+                    &quot;As you hesitate, the spirit becomes agitated and unleashes a terrible scream.\n&quot; +
+                    &quot;You died.&quot;);
+<span class="nc" id="L69">                    player.setCurrentHp(0);</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">                    if (!player.isAlive()) {return;}</span>
+<span class="nc" id="L71">                    spirit = false;</span>
+                    break;
+                default:
+            }
+        }
+<span class="nc" id="L76">    }</span>
+    
+    public void investigateOrNo(Player player, InputHandler inputHandler)  {
+
+<span class="nc" id="L80">        boolean whispering = true;</span>
+
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        while (whispering) {</span>
+<span class="nc" id="L83">         System.out.println(&quot;\nYou decide to continue exploring the temple without touching anything.\n&quot; +</span>
+            &quot;As you walk through the corridor, you hear a faint whispering sound.\n&quot; +
+            &quot;What do you want to do?\n\n&quot; +
+            &quot;1. Investigate the source of the whispering.\n&quot; +
+            &quot;2. Ignore the whispering and proceed cautiously.&quot;);
+
+<span class="nc" id="L89">            String secondChoiceExplore = inputHandler.readInput(player);</span>
+
+<span class="nc bnc" id="L91" title="All 3 branches missed.">                switch (secondChoiceExplore) {</span>
+                    case &quot;1&quot;:
+<span class="nc" id="L93">                        System.out.println(&quot;\nYou follow the sound of the whispering and encounter a mysterious statue.\n&quot; +</span>
+                        &quot;The statue reveals itself as a helpful spirit, warning you of dangers.\n&quot; +
+                        &quot;The spirit guides you safely out of the temple.\n&quot;);
+<span class="nc" id="L96">                        gainEXP(player);</span>
+<span class="nc" id="L97">                            whispering = false;</span>
+<span class="nc" id="L98">                            break;</span>
+                    case &quot;2&quot;:
+<span class="nc" id="L100">                        randomLiveOrDie(player);</span>
+<span class="nc" id="L101">                            whispering = false;</span>
+                            break;
+                    default:
+                }
+        }
+<span class="nc" id="L106">    }</span>
+
+    public void randomLiveOrDie(Player player) {
+<span class="nc" id="L109">    System.out.println(&quot;\nYou decide to ignore the whispering and proceed cautiously.&quot;);</span>
+
+<span class="nc" id="L111">    int randomOutcome = randomgen.nextInt(2);</span>
+
+<span class="nc bnc" id="L113" title="All 3 branches missed.">        switch (randomOutcome) {</span>
+            case 0:
+<span class="nc" id="L115">                System.out.println(&quot;\n!\n&quot; +</span>
+                &quot;You navigate the temple safely and find a hidden exit.\n&quot; +
+                &quot;You survived! You gain:\nAttack: + 2\nMax HP: + 5\n&quot;);
+<span class="nc" id="L118">                player.addAttack(2);</span>
+<span class="nc" id="L119">                player.addMaxHp(5);</span>
+<span class="nc" id="L120">                player.addCurrentHp(5);</span>
+<span class="nc" id="L121">                gainEXP(player);</span>
+<span class="nc" id="L122">                    break;</span>
+            case 1:
+<span class="nc" id="L124">                System.out.println(&quot;\nA trap is triggered, and you fall into a pit.\n&quot; +</span>
+                &quot;You died.&quot;);
+<span class="nc" id="L126">                player.setCurrentHp(0);</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">                if (!player.isAlive()) {return;}</span>
+                    break;
+            default:
+            
+        }
+<span class="nc" id="L132">    }  </span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
