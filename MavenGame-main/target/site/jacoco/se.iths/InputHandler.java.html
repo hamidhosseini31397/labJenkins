@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InputHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths</a> &gt; <span class="el_source">InputHandler.java</span></div><h1>InputHandler.java</h1><pre class="source lang-java linenums">package se.iths;
+
+
+import java.util.Scanner;
+
+public class InputHandler {
+    Scanner scanner;
+
+<span class="nc" id="L9">    public InputHandler() {</span>
+<span class="nc" id="L10">        this.scanner = new Scanner(System.in);</span>
+<span class="nc" id="L11">    }</span>
+
+    public String readInput(Player player) {
+<span class="nc" id="L14">        GameController gc = new GameController(player);</span>
+
+<span class="nc" id="L16">        String input = scanner.nextLine();</span>
+
+<span class="nc bnc" id="L18" title="All 2 branches missed.">        if (&quot;/exit&quot;.equals(input.toLowerCase())) {</span>
+<span class="nc" id="L19">            System.out.println(&quot;Exiting the program.&quot;);</span>
+<span class="nc" id="L20">            System.exit(0);</span>
+
+<span class="nc bnc" id="L22" title="All 2 branches missed.">        } else if (&quot;/stats&quot;.equals(input.toLowerCase())) {</span>
+<span class="nc" id="L23">            player.displayPlayerStats();</span>
+<span class="nc" id="L24">            System.out.println(&quot;Press ENTER to close.&quot;);</span>
+<span class="nc" id="L25">            scanner.nextLine();</span>
+
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        } else if (&quot;/help&quot;.equals(input.toLowerCase())) {</span>
+<span class="nc" id="L28">            gc.clearScreen();</span>
+<span class="nc" id="L29">            System.out.println(&quot;\n&quot; + gc.midInstructions + &quot;\n&quot;);</span>
+<span class="nc" id="L30">            System.out.println(&quot;Press ENTER to close.&quot;);</span>
+<span class="nc" id="L31">            scanner.nextLine();</span>
+<span class="nc" id="L32">        }</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        else if (&quot;/menu&quot;.equals(input.toLowerCase())){</span>
+<span class="nc" id="L34">            boolean menu = true;</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            while (menu){</span>
+<span class="nc" id="L36">                System.out.println(&quot;Main Menu: \n(1) View Stats. \n(2) Heal.    Apples: &quot; + player.getApple() + &quot;/4. \n(3) View Help instructions. \n(4) Close Menu. \n(5) Exit Game.&quot;);</span>
+<span class="nc" id="L37">                String choice = scanner.nextLine();</span>
+<span class="nc bnc" id="L38" title="All 6 branches missed.">                switch(choice){</span>
+                    case &quot;1&quot;:
+<span class="nc" id="L40">                    player.displayPlayerStats();</span>
+<span class="nc" id="L41">                    System.out.println(&quot;Press ENTER to close.&quot;);</span>
+<span class="nc" id="L42">                    scanner.nextLine();</span>
+<span class="nc" id="L43">                    break;</span>
+                    case &quot;2&quot;:
+<span class="nc" id="L45">                    player.heal(player);</span>
+<span class="nc" id="L46">                    break;</span>
+                    case &quot;3&quot;:
+<span class="nc" id="L48">                    gc.clearScreen();</span>
+<span class="nc" id="L49">                    System.out.println(&quot;\n&quot; + gc.midInstructions + &quot;\n&quot;);</span>
+<span class="nc" id="L50">                    System.out.println(&quot;Press ENTER to close.&quot;);</span>
+<span class="nc" id="L51">                    scanner.nextLine();</span>
+<span class="nc" id="L52">                    break;</span>
+                    case &quot;4&quot;:
+<span class="nc" id="L54">                    menu=false;</span>
+<span class="nc" id="L55">                    break;</span>
+                    case &quot;5&quot;:
+<span class="nc" id="L57">                    System.out.println(&quot;Are you sure you want to exit the game? \n(1) Yes \n(2) No, return to game.&quot;);</span>
+<span class="nc" id="L58">                    String exit = scanner.nextLine().toString();</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">                    if(exit.equals(&quot;1&quot;)){</span>
+<span class="nc" id="L60">                        System.out.println(&quot;Exiting the program.&quot;);</span>
+<span class="nc" id="L61">                        System.exit(0);</span>
+                    } else {}
+                    default:
+                }
+            }
+        }
+<span class="nc" id="L67">        return input.toLowerCase();</span>
+    }
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

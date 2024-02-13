@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RandomChestEvent.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths.allEvent</a> &gt; <span class="el_source">RandomChestEvent.java</span></div><h1>RandomChestEvent.java</h1><pre class="source lang-java linenums">package se.iths.allEvent;
+
+import se.iths.*;
+
+
+public class RandomChestEvent extends Event {
+
+    public RandomChestEvent(){
+<span class="nc" id="L9">        super();</span>
+<span class="nc" id="L10">        this.eventLevel = 2;</span>
+<span class="nc" id="L11">    }</span>
+
+ @Override
+    public void execute(Player player, InputHandler inputHandler) {
+
+<span class="nc" id="L16">        System.out.println(&quot;While stopping by in a small town one day you wander through the market on a busy street when a peculiarly dressed man catches your eye. &quot; +</span>
+         &quot;Your feet seem to live their own life and before you know it you find yourself in front of his stand, curiousity piqued. &quot; + 
+         &quot;\nWelcome Traveler, care to play a game of mysteries? He says, gesturing the woven mat in front of him with an enigmatic smile. &quot; + 
+         &quot;\nYou eye the three chests on the mat with interest, finding yourself asking what you have to do. &quot; + 
+         &quot;\nIn one of these chests there is a valuable tresure. You get to choose only one to open and you gain whatever is inside. &quot; + 
+         &quot;But beware, only one is a lucky choice, the others only contains missfortune. &quot; + 
+         &quot;\nYou cannot resist and against your better judgement you agree to the game. \nYou have trouble deciding so you fish a die from your pocket to help you out.&quot;);
+
+<span class="nc" id="L24">        boolean chestPicked = true;</span>
+
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        while(chestPicked){</span>
+<span class="nc" id="L27">         int chest = randomgen.nextInt(4);</span>
+
+<span class="nc bnc" id="L29" title="All 5 branches missed.">            switch(chest){</span>
+
+            case 0: {
+<span class="nc" id="L32">                pressEnterToContinue(player);</span>
+<span class="nc" id="L33">                System.out.println(&quot;You roll the die but at the result you still go with gutfeeling and pick the sturdy chest to the left. &quot; + </span>
+                &quot;\nYou lift the lid and find a golden amulet with a glowing orb of lapis lazuli in the center. Surely this must be the treasure.&quot;);
+<span class="nc" id="L35">                player.addMaxHp(10);</span>
+<span class="nc" id="L36">                player.addAttack(5);</span>
+<span class="nc" id="L37">                System.out.println(&quot;You take the amulet from the chest and put it around your neck. You feel stronger already.&quot;);</span>
+<span class="nc" id="L38">                System.out.println(&quot;Max HP: + 10 \nAttack: + 5&quot;);</span>
+<span class="nc" id="L39">                System.out.println();</span>
+<span class="nc" id="L40">                chestPicked = false;</span>
+<span class="nc" id="L41">                pressEnterToContinue(player);</span>
+<span class="nc" id="L42">                break;</span>
+            }
+            case 1: {
+<span class="nc" id="L45">                pressEnterToContinue(player);</span>
+<span class="nc" id="L46">                System.out.println(&quot;The die rolled a three. After careful consideration you choose to open the wooden chest in the center instead. This felt like a test of your greed and you would not fail.&quot; + </span>
+                &quot;\nYour modesty paid off. The chest contained a ruby ring that glittered in the sunlight. A valuable tresure indeed.&quot;);
+<span class="nc" id="L48">                player.addSpeed(5);</span>
+<span class="nc" id="L49">                player.addAttack(5);</span>
+<span class="nc" id="L50">                System.out.println(&quot;Attack: + 5 \nSpeed: +5&quot;);</span>
+<span class="nc" id="L51">                System.out.println();</span>
+<span class="nc" id="L52">                chestPicked = false;</span>
+<span class="nc" id="L53">                pressEnterToContinue(player);</span>
+<span class="nc" id="L54">                break;</span>
+            }
+            case 2: {
+<span class="nc" id="L57">                pressEnterToContinue(player);</span>
+<span class="nc" id="L58">                System.out.println(&quot;You ignore the dieroll and decide to pick the golden chest of fine make and when you lift the lid you are met with a golden armcuff with inlaid emmeralds. &quot; + </span>
+                &quot;\nAs you slip it around your wrist you feel a surge of power through your arm. This was a great treasure.&quot;);
+<span class="nc" id="L60">                player.addAttack(10);</span>
+<span class="nc" id="L61">                System.out.println(&quot;Attack: + 10&quot;);</span>
+<span class="nc" id="L62">                System.out.println();</span>
+<span class="nc" id="L63">                chestPicked = false;</span>
+<span class="nc" id="L64">                pressEnterToContinue(player);</span>
+<span class="nc" id="L65">                break;</span>
+            }
+            case 3: {
+<span class="nc" id="L68">                pressEnterToContinue(player);</span>
+<span class="nc" id="L69">                System.out.println(&quot;The die rolled a two, you pick the wooden chest in the center and open the lid. &quot; + </span>
+                &quot;\nYou are met with a foul stench and instinctively take a step back.&quot;);
+<span class="nc" id="L71">                System.out.println(&quot;The peculiarly dressed man seems delighted at the sight of the content of the chest.&quot; + </span>
+                &quot;\n'I've been looking everywhere for this! The rules state it's yours now but would you trade your prize for this magical cloak instead?' he says. &quot; + 
+                &quot;\nYou have no reason to refuse the offer. The stinky content in the chest doesn't seem to do you any good. You accept.&quot; + 
+                &quot; The cloak feels like water in your hands and the light material is shimmering in the sunlight. You pull it on and your body feel light. &quot;);
+<span class="nc" id="L75">                player.addSpeed(10);</span>
+<span class="nc" id="L76">                System.out.println(&quot;Speed: + 10&quot;);</span>
+<span class="nc" id="L77">                System.out.println();</span>
+<span class="nc" id="L78">                chestPicked = false;</span>
+<span class="nc" id="L79">                pressEnterToContinue(player);</span>
+                break;
+            }
+            default:
+        }
+
+<span class="nc" id="L85">        System.out.println(&quot;You leave the merchant feeling like luck is smiling at you today. \nWhen you reach the end of the street you turn back and notices the strange man and his chests is nowhere to be seen. &quot; + </span>
+        &quot;\nIn the spot where you just won your prize is only an empty space between some stalls and you rub your eyes and blink in confusion. Looking at your newly aquired prize you shake your head in disbelief. &quot; + 
+        &quot;\nSome mysteries are not meant to be understood but maybe playing games with shady merchants is a lesson to be learned another day.&quot;);
+<span class="nc" id="L88">        System.out.println();</span>
+<span class="nc" id="L89">        gainEXP(player);</span>
+        }
+
+<span class="nc" id="L92">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

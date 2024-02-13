@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TravelerEvent.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths.allEvent</a> &gt; <span class="el_source">TravelerEvent.java</span></div><h1>TravelerEvent.java</h1><pre class="source lang-java linenums">package se.iths.allEvent;
+
+import se.iths.*;
+
+
+public class TravelerEvent extends Event{
+
+    public TravelerEvent() {
+<span class="nc" id="L9">        super();</span>
+<span class="nc" id="L10">        this.eventLevel = 2;</span>
+<span class="nc" id="L11">    }</span>
+    @Override
+    public void execute(Player player, InputHandler inputHandler) {
+
+
+<span class="nc" id="L16">    boolean traveler = true;</span>
+<span class="nc bnc" id="L17" title="All 2 branches missed.">    while(traveler){</span>
+<span class="nc" id="L18">    System.out.println(&quot;You meet a traveler on the road. Do you stop and chat? \n[1] Yes \n[2] No&quot;);</span>
+<span class="nc" id="L19">    String choice = input.readInput(player);</span>
+
+<span class="nc bnc" id="L21" title="All 2 branches missed.">    if(choice.equalsIgnoreCase(&quot;1&quot;)){</span>
+<span class="nc" id="L22">        chat(player);</span>
+<span class="nc" id="L23">        traveler=false;</span>
+      
+<span class="nc bnc" id="L25" title="All 2 branches missed.">    } else if (choice.equalsIgnoreCase(&quot;2&quot;)) {</span>
+<span class="nc" id="L26">        System.out.println(&quot;You ingore the traveler and continue down the road.&quot;);</span>
+<span class="nc" id="L27">        battle.battle(player);</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        if (!player.isAlive()) {return;}</span>
+<span class="nc" id="L29">        traveler = false;</span>
+        }
+    }
+<span class="nc" id="L32">}</span>
+
+
+public void chat(Player player){
+    
+<span class="nc" id="L37">    boolean chat = true;</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">    while (chat){</span>
+<span class="nc" id="L39">    System.out.println(&quot;As you converse he tells you of his quest for a Golden Apple. You remember seeing some apples in your bag earlier and says as much.&quot;);</span>
+<span class="nc" id="L40">    System.out.println(&quot;His face lights up and he offers to trade his dagger for a Golden Apple.&quot;);</span>
+<span class="nc" id="L41">    System.out.println(&quot;Do you accept? \n[1] Yes \n[2] No&quot;);</span>
+<span class="nc" id="L42">        String secondChoice = input.readInput(player);</span>
+
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if(secondChoice.equalsIgnoreCase(&quot;1&quot;)) {</span>
+                
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (player.getApple() != 0){</span>
+<span class="nc" id="L47">                    System.out.println(&quot;The traveler becomes delighted and hands you the dagger.&quot;);</span>
+<span class="nc" id="L48">                    player.addAttack(3);</span>
+<span class="nc" id="L49">                    player.addSpeed(2);</span>
+<span class="nc" id="L50">                    player.decreseApple(1);</span>
+<span class="nc" id="L51">                    System.out.println(&quot;Attack: + 3\nSpeed: + 2\n\nYou give up one Apple.\nApple: - 1\n&quot;);</span>
+<span class="nc" id="L52">                    System.out.println(&quot;The traveler seems so happy about his new apple that you start to wonder if you might have gotten the short straw.&quot;);</span>
+<span class="nc" id="L53">                    System.out.println(&quot;Oh well, at least someone got the winning hand.&quot;);</span>
+<span class="nc" id="L54">                    System.out.println();</span>
+<span class="nc" id="L55">                    gainEXP(player);</span>
+<span class="nc" id="L56">                    chat = false;</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            }   else if (player.getApple() == 0) {</span>
+<span class="nc" id="L58">                        System.out.println(&quot;You look through your bag but it seems you don't have any apples to trade. The traveler sighs disappointedly and continues his hunt for a Golden apple.&quot;);</span>
+<span class="nc" id="L59">                        System.out.println();</span>
+<span class="nc" id="L60">                        gainEXP(player);</span>
+<span class="nc" id="L61">                        chat = false;</span>
+                } 
+
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        } else if(secondChoice.equalsIgnoreCase(&quot;2&quot;))   {</span>
+<span class="nc" id="L65">            uppedTrade(player);</span>
+<span class="nc" id="L66">            chat = false;</span>
+                
+<span class="nc bnc" id="L68" title="All 2 branches missed.">    }  else if (secondChoice.equalsIgnoreCase(&quot;2&quot;)) {    </span>
+<span class="nc" id="L69">            noTrade(player);</span>
+<span class="nc" id="L70">            chat = false;</span>
+        }   
+    }
+<span class="nc" id="L73">}</span>
+
+
+public void noTrade(Player player){
+<span class="nc" id="L77">        System.out.println(&quot;You still dont want to trade your apples. The traveler stalks off in anger.&quot;);</span>
+<span class="nc" id="L78">        System.out.println(&quot;You shrug and continue on your way.&quot;);</span>
+<span class="nc" id="L79">        System.out.println();</span>
+<span class="nc" id="L80">        gainEXP(player);</span>
+<span class="nc" id="L81">}</span>
+
+
+public void uppedTrade(Player player){
+<span class="nc" id="L85">    boolean cloak = true;</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">    while (cloak){</span>
+<span class="nc" id="L87">        System.out.println(&quot;You want to keep your apples and politely decline.&quot;);</span>
+<span class="nc" id="L88">        System.out.println(&quot;The travaler looks disappointed before rummaging through his backpack but finds nothing.&quot;);</span>
+<span class="nc" id="L89">        System.out.println(&quot;He looks at you desperately before frantically stripping himself of his cloak and offers it to you.&quot;);</span>
+<span class="nc" id="L90">        System.out.println(&quot;'If I give you this aswell, would you please reconsider?' he pleads desperately.&quot;);</span>
+<span class="nc" id="L91">        System.out.println(&quot;Do you accept? \n[1] Yes \n[2] No&quot;);</span>
+<span class="nc" id="L92">            String thirdChoice = input.readInput(player);</span>
+
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            if(thirdChoice.equalsIgnoreCase(&quot;1&quot;)) {</span>
+                    
+<span class="nc bnc" id="L96" title="All 2 branches missed.">                if ( player.getApple() != 0){</span>
+<span class="nc" id="L97">                System.out.println(&quot;You take pity on him and accept. You could always use a new cloak anyway.&quot;);</span>
+<span class="nc" id="L98">                System.out.println(&quot;You hand over the apple as he throws the dagger and cloak into your hands.&quot;);</span>
+<span class="nc" id="L99">                player.addMaxHp(10);</span>
+<span class="nc" id="L100">                player.addCurrentHp(10);</span>
+<span class="nc" id="L101">                player.addSpeed(3);</span>
+<span class="nc" id="L102">                player.addAttack(3);</span>
+<span class="nc" id="L103">                player.decreseApple(1);</span>
+<span class="nc" id="L104">                System.out.println(&quot;Max HP: + 10 \nAttack: + 3 \nSpeed: + 2\n\nApple: - 1\n&quot;);</span>
+<span class="nc" id="L105">                System.out.println(&quot;The traveler thanks you profously and rushes down the road with his precious apple.&quot;);</span>
+<span class="nc" id="L106">                System.out.println(&quot;You feel pretty good about the trade even though you lost an apple. You continue down the road.&quot;);</span>
+<span class="nc" id="L107">                System.out.println();                    </span>
+<span class="nc" id="L108">                gainEXP(player);</span>
+<span class="nc" id="L109">                cloak = false;</span>
+<span class="nc" id="L110">                }  else  {</span>
+<span class="nc" id="L111">                    System.out.println(&quot;You look through your bag but it seams you don't have any apples to trade. The traveler sighs disappointedly and continues his hunt for a Golden apple.&quot;);</span>
+<span class="nc" id="L112">                    System.out.println();</span>
+<span class="nc" id="L113">                    gainEXP(player);</span>
+<span class="nc" id="L114">                    cloak = false;</span>
+                    }
+                        
+<span class="nc bnc" id="L117" title="All 2 branches missed.">                } else if (thirdChoice.equalsIgnoreCase(&quot;2&quot;)) {    </span>
+<span class="nc" id="L118">                noTrade(player);</span>
+<span class="nc" id="L119">                cloak = false;</span>
+                }
+    }
+
+<span class="nc" id="L123">}</span>
+
+} 
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

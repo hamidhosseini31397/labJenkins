@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MenuController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths</a> &gt; <span class="el_source">MenuController.java</span></div><h1>MenuController.java</h1><pre class="source lang-java linenums">package se.iths;
+
+
+<span class="nc" id="L4">public class MenuController {</span>
+<span class="nc" id="L5">    InputHandler input = new InputHandler();</span>
+<span class="nc" id="L6">    boolean storyOnce = false;</span>
+<span class="nc" id="L7">    boolean introStoryOnce = false;</span>
+
+
+    public Player selectOption() {
+<span class="nc" id="L11">        String menuChoice = input.readInput(null);</span>
+        String name;
+<span class="nc" id="L13">        Player player = null;</span>
+
+<span class="nc bnc" id="L15" title="All 4 branches missed.">        switch (menuChoice) {</span>
+            case &quot;start&quot;:
+            case &quot;1&quot;:
+<span class="nc" id="L18">                clearScreen();</span>
+<span class="nc bnc" id="L19" title="All 2 branches missed.">                while(!storyOnce)</span>
+                {
+                    try 
+                    {
+<span class="nc" id="L23">                        beginStory(input);</span>
+<span class="nc" id="L24">                    }</span>
+<span class="nc" id="L25">                    catch (InterruptedException e) {/* IGNORE */}</span>
+<span class="nc" id="L26">                    storyOnce = true;</span>
+                }
+<span class="nc" id="L28">                name = inputName(input);</span>
+<span class="nc" id="L29">                player = new Player(name);</span>
+<span class="nc" id="L30">                clearScreen();</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">                while(!introStoryOnce)</span>
+                {
+                    try
+                    {
+<span class="nc" id="L35">                        introStory();</span>
+<span class="nc" id="L36">                    }</span>
+<span class="nc" id="L37">                    catch (InterruptedException e) {/* IGNORE */}</span>
+<span class="nc" id="L38">                    introStoryOnce = true;</span>
+                }
+<span class="nc" id="L40">                IntroductionBattle introBattle = new IntroductionBattle(player);</span>
+<span class="nc" id="L41">                introBattle.introBattle(player);</span>
+<span class="nc" id="L42">                player.setApple(4);</span>
+<span class="nc" id="L43">                GameController game = new GameController(player);</span>
+<span class="nc" id="L44">                game.selectPath();</span>
+<span class="nc" id="L45">                return player;</span>
+
+            case &quot;help&quot;:
+            case &quot;2&quot;:
+<span class="nc" id="L49">                clearScreen();</span>
+<span class="nc" id="L50">                System.out.println(instructions);</span>
+<span class="nc" id="L51">                input.readInput(player);</span>
+<span class="nc" id="L52">                clearScreen();</span>
+<span class="nc" id="L53">                break;</span>
+
+            case &quot;quit&quot;:
+            case &quot;3&quot;:
+<span class="nc" id="L57">                System.out.println(&quot;Game Shutting down...&quot;);</span>
+<span class="nc" id="L58">                input.readInput(player);</span>
+<span class="nc" id="L59">                System.exit(0);</span>
+<span class="nc" id="L60">                break;</span>
+
+            default:
+<span class="nc" id="L63">                clearScreen();</span>
+<span class="nc" id="L64">                System.out.println(&quot;Incorrect input! Please try again.&quot;);</span>
+                break;
+        }
+<span class="nc" id="L67">        return player;</span>
+    }
+    
+<span class="nc" id="L70">    String instructions =</span>
+<span class="nc" id="L71">        &quot;In this game you will go through a series of encounters where the goal of the game is to reach the end.&quot;</span>
+        + &quot;\nEach room will prompt you with a path of either left or right and present an event.&quot;
+        + &quot;\nThese events could either be in the form of combat against monsters or an event that will further prompt you to make a decision.&quot;
+        + &quot;\nThese events can either reward or punish the player.&quot;
+        
+        + &quot;\n\nThe player character and monsters has a set of stats, these are:&quot;
+        + &quot;\n- HP : How much health the player/monster has.&quot; 
+        + &quot;\n- Attack : How much minimum damage the player and the monster can output, the maximum output is randomized.&quot;
+        + &quot;\n- Level : What level the player is and determines their overall prowess.&quot;
+        + &quot;\n- Speed : How dexterous either one is, the one that has more than the other fights first.&quot;
+        + &quot;\n- Experience : This is received whenever a task is completed or after defeating a monster. Accumulate enough and you rise in level.&quot;
+        + &quot;\nYou as the player also has a set of apples that whenever eaten will fully rejuvenate you.&quot;
+        + &quot;\nUseful if you've taken a large amount of damage.&quot;
+        
+        + &quot;\n\n Whenever in-game you can also type the following commands:&quot;
+        + &quot;\n- /menu: Shows a menu with options.\nView Stats - Shows your character stats. \nHeal - Consumes an apple and restore health \nView help intructions - shows instructions.\nClose menu - Closes the menu. \nExit game - Will ask if you want to close the game and then Exit game at positive answer.\n&quot;
+
+        
+        + &quot;\n\nGood luck \&quot;mundane somebody\&quot;!&quot; + &quot;\n\nPress ENTER to return to menu.&quot;;
+    
+    public String inputName(InputHandler inputHandler) {
+<span class="nc" id="L92">        boolean nameEmpty = true;</span>
+<span class="nc" id="L93">        String name = &quot;&quot;;</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        while (nameEmpty) {</span>
+<span class="nc" id="L95">            System.out.println(&quot;\n\nWhat is your name? &quot;);</span>
+<span class="nc" id="L96">            name = input.readInput(null);</span>
+
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            if (name.length() != 0) {</span>
+<span class="nc" id="L99">                nameEmpty = false;</span>
+<span class="nc" id="L100">            }</span>
+            else {
+<span class="nc" id="L102">                System.out.println(&quot;Incorrect input, empty! Please type in a name.&quot;);</span>
+            }
+        }
+<span class="nc" id="L105">        return name;</span>
+    }
+
+    public void beginStory(InputHandler inputHandler) throws InterruptedException {
+<span class="nc" id="L109">        System.out.println(&quot;&gt;|GAME START|&lt;&quot;);</span>
+<span class="nc" id="L110">        Thread.sleep(1500);</span>
+<span class="nc" id="L111">        clearScreen();</span>
+<span class="nc" id="L112">        Thread.sleep(1000);</span>
+<span class="nc" id="L113">        System.out.println(&quot;This is an era of Monsters, Beasts and Badmen.&quot;);</span>
+<span class="nc" id="L114">        Thread.sleep(2000);</span>
+<span class="nc" id="L115">        System.out.println(&quot;Aswell as Great Magic and Mighty Steel.&quot;);</span>
+<span class="nc" id="L116">        Thread.sleep(2000);</span>
+<span class="nc" id="L117">        System.out.println(&quot;These lands are ridden with fear and strife.&quot;);</span>
+<span class="nc" id="L118">        Thread.sleep(2000);</span>
+<span class="nc" id="L119">        System.out.println(&quot;In these times a great warrior is needed, a saviour of true heroism.&quot;);</span>
+<span class="nc" id="L120">        Thread.sleep(2000);</span>
+<span class="nc" id="L121">        System.out.print(&quot;This \&quot;warrior\&quot;... &quot;);</span>
+<span class="nc" id="L122">        Thread.sleep(2000);</span>
+<span class="nc" id="L123">        System.out.print(&quot;is not you.&quot;);</span>
+<span class="nc" id="L124">        Thread.sleep(500);</span>
+<span class="nc" id="L125">        System.out.print(&quot;\nInstead you are; &quot;);</span>
+<span class="nc" id="L126">        Thread.sleep(600);</span>
+<span class="nc" id="L127">        System.out.print(&quot;average joe, &quot;);</span>
+<span class="nc" id="L128">        Thread.sleep(600);</span>
+<span class="nc" id="L129">        System.out.print(&quot;mundane, &quot;);</span>
+<span class="nc" id="L130">        Thread.sleep(600);</span>
+<span class="nc" id="L131">        System.out.print(&quot;milquetoast.&quot;);</span>
+<span class="nc" id="L132">        Thread.sleep(1500);</span>
+<span class="nc" id="L133">        System.out.println(&quot;\nYou decided however that your current occupation wasn't worth your time anymore.&quot;);</span>
+<span class="nc" id="L134">        Thread.sleep(2000);</span>
+<span class="nc" id="L135">        System.out.println(&quot;You then made the decision that adventuring was a bigger endavour worthy of your commitment&quot;);</span>
+<span class="nc" id="L136">        Thread.sleep(2000);</span>
+<span class="nc" id="L137">        System.out.println(&quot;You ready up, equip whatever you have in your possession.&quot;);</span>
+<span class="nc" id="L138">        Thread.sleep(2000);</span>
+<span class="nc" id="L139">        System.out.println(&quot;You also grab your grandfathers rare \&quot;Holy Golden Apples\&quot;, said to have the ability to heal any wound.&quot;);</span>
+<span class="nc" id="L140">        Thread.sleep(2000);</span>
+<span class="nc" id="L141">        System.out.println(&quot;You leave and never look behind back at your old life...&quot;);</span>
+<span class="nc" id="L142">        Thread.sleep(2000);</span>
+<span class="nc" id="L143">        System.out.println(&quot;Press ENTER to begin your adventure.&quot;);</span>
+<span class="nc" id="L144">        input.readInput(null);</span>
+
+<span class="nc" id="L146">    }</span>
+
+    public static void introStory() throws InterruptedException 
+    {
+<span class="nc" id="L150">        System.out.println(&quot;After hearing a commotion of a giant beast nearby your village, you ask the men if you could hear more about this. One of them tells you:&quot;);</span>
+<span class="nc" id="L151">        Thread.sleep(3000);</span>
+<span class="nc" id="L152">        System.out.print(&quot;\n -That damned bleeding monstrosity is holding us at standstill!&quot;);</span>
+<span class="nc" id="L153">        Thread.sleep(3000);</span>
+<span class="nc" id="L154">        System.out.print(&quot; I've needed to deliver this shipment for the past 2 weeks!&quot;);</span>
+<span class="nc" id="L155">        Thread.sleep(3000);</span>
+<span class="nc" id="L156">        System.out.println(&quot;\n Matter of fact, everyone in this village here has some deliveries to be made but can't, in fear of the beast.&quot;);</span>
+<span class="nc" id="L157">        Thread.sleep(3000);</span>
+<span class="nc" id="L158">        System.out.println(&quot;\nYou then tell the man that you think you could handle the monster.&quot;);</span>
+<span class="nc" id="L159">        Thread.sleep(3000);</span>
+<span class="nc" id="L160">        System.out.print(&quot;\n -You?&quot;);</span>
+<span class="nc" id="L161">        Thread.sleep(1500);</span>
+<span class="nc" id="L162">        System.out.print(&quot; You want to take care of it?&quot;);</span>
+<span class="nc" id="L163">        Thread.sleep(2500);</span>
+<span class="nc" id="L164">        System.out.print(&quot; You look like nuthin' but a milksop!&quot;);</span>
+<span class="nc" id="L165">        Thread.sleep(3000);</span>
+<span class="nc" id="L166">        System.out.print(&quot; A run-of-the-mill farmer!&quot;);</span>
+<span class="nc" id="L167">        Thread.sleep(3000);</span>
+<span class="nc" id="L168">        System.out.println(&quot;\n What could you possibly offer rather than what hero or knight could?&quot;);</span>
+<span class="nc" id="L169">        Thread.sleep(3000);</span>
+<span class="nc" id="L170">        System.out.println(&quot;\nYou blankly stare at the man and simply tell them: \&quot;I'll do it for free.\&quot;&quot;);</span>
+<span class="nc" id="L171">        Thread.sleep(3000);</span>
+<span class="nc" id="L172">        System.out.println(&quot;The man raises one eyebrow, visibly confused by your words but simply shrugs and says: &quot;);</span>
+<span class="nc" id="L173">        Thread.sleep(3000);</span>
+<span class="nc" id="L174">        System.out.print(&quot;\n -well if it is a deathwish you want then so be it.&quot;);</span>
+<span class="nc" id="L175">        Thread.sleep(3000);</span>
+<span class="nc" id="L176">        System.out.print(&quot; At least we won't have to pay for your failures.&quot;);</span>
+<span class="nc" id="L177">        Thread.sleep(3000);</span>
+<span class="nc" id="L178">        System.out.print(&quot;\n Alright if you want to take this one then I'll at the very least guide you to the path.&quot;);</span>
+<span class="nc" id="L179">        Thread.sleep(3000);</span>
+<span class="nc" id="L180">        System.out.print(&quot;\n\nThe man shows you to the path and lets you off,&quot;);</span>
+<span class="nc" id="L181">        Thread.sleep(3000);</span>
+<span class="nc" id="L182">        System.out.print(&quot; you venture forth the path leading towards the catacombs.&quot;);</span>
+<span class="nc" id="L183">        Thread.sleep(3000);</span>
+<span class="nc" id="L184">        System.out.print(&quot;\nYou've tread for some time now and suddenly hear something.&quot;);</span>
+<span class="nc" id="L185">        Thread.sleep(1500);</span>
+<span class="nc" id="L186">        System.out.print(&quot;.&quot;);</span>
+<span class="nc" id="L187">        Thread.sleep(1500);</span>
+<span class="nc" id="L188">        System.out.print(&quot;.&quot;);</span>
+<span class="nc" id="L189">        Thread.sleep(2000);</span>
+<span class="nc" id="L190">        System.out.print(&quot; Tis a slime that appears! Draw your weapon and ready yourself for battle!\n&quot;);</span>
+<span class="nc" id="L191">        Thread.sleep(3000);</span>
+<span class="nc" id="L192">    }</span>
+
+    public void clearScreen() {
+<span class="nc" id="L195">        System.out.print(&quot;\033[H\033[2J&quot;);</span>
+<span class="nc" id="L196">        System.out.flush();</span>
+<span class="nc" id="L197">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WishingStarEvent.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adventuregame</a> &gt; <a href="index.source.html" class="el_package">se.iths.allEvent</a> &gt; <span class="el_source">WishingStarEvent.java</span></div><h1>WishingStarEvent.java</h1><pre class="source lang-java linenums">package se.iths.allEvent;
+
+import se.iths.*;
+
+
+public class WishingStarEvent extends Event {
+    
+public WishingStarEvent(){
+<span class="nc" id="L9">    super();</span>
+<span class="nc" id="L10">    this.eventLevel = 1;</span>
+<span class="nc" id="L11">}</span>
+
+@Override
+public void execute(Player player, InputHandler inputHandler){
+<span class="nc" id="L15">    boolean wishChoice = true;</span>
+<span class="nc bnc" id="L16" title="All 2 branches missed.">    while(wishChoice){</span>
+<span class="nc" id="L17">    System.out.println(&quot;After a few hours of walking the sun rolls down under the horizon and you decide to stop for some rest.&quot;);</span>
+<span class="nc" id="L18">    System.out.println(&quot;When you are about to tuck in for the night you witness a meteor shower and have the opportunity to wish upon a falling star&quot;);</span>
+<span class="nc" id="L19">    System.out.println(&quot;Do you make a wish? \n[1] Yes \n[2] No&quot;);</span>
+<span class="nc" id="L20">    String choice = input.readInput(player);</span>
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        if(choice.equalsIgnoreCase(&quot;1&quot;)) {</span>
+<span class="nc" id="L22">            Wish(player, input);</span>
+<span class="nc" id="L23">             wishChoice=false;</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        } else if (choice.equalsIgnoreCase(&quot;2&quot;)) {</span>
+<span class="nc" id="L25">            boolean sure = true;</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">            while (sure){</span>
+<span class="nc" id="L27">            System.out.println(&quot;Are you sure? Opportunities like this don't come often!\nMake a wish? \n[1] Yes \n[2] No&quot;);</span>
+<span class="nc" id="L28">                choice = input.readInput(player);</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">                    if(choice.equalsIgnoreCase(&quot;1&quot;)) {</span>
+<span class="nc" id="L30">                        Wish(player, input);</span>
+<span class="nc" id="L31">                         wishChoice=false;</span>
+<span class="nc" id="L32">                         sure = false;</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">                    } else if (choice.equalsIgnoreCase(&quot;2&quot;)) {</span>
+<span class="nc" id="L34">                        noWish(player);</span>
+<span class="nc" id="L35">                         wishChoice=false;</span>
+<span class="nc" id="L36">                         sure = false;</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">                         if (!player.isAlive()) {return;}</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">                    } else if(choice.equalsIgnoreCase(&quot;/menu&quot;)){}</span>
+                    else{
+<span class="nc" id="L40">                        System.out.println(&quot;wrong input&quot;);</span>
+                    }
+                }
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        } else if (choice.equalsIgnoreCase(&quot;2&quot;)) {</span>
+<span class="nc" id="L44">            noWish(player);</span>
+<span class="nc" id="L45">             wishChoice=false;</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">             if (!player.isAlive()) {return;}</span>
+        } else {
+        }
+    }      
+<span class="nc" id="L50">}</span>
+
+private void Wish(Player player, InputHandler inputHandler) {
+
+<span class="nc" id="L54">    boolean wishChoice = true;</span>
+<span class="nc" id="L55">    System.out.println(&quot;\nYou clasp you hands and turn your gaze towards the stars and decide to wish for:&quot;); </span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">    while (wishChoice){</span>
+<span class="nc" id="L57">    System.out.println(&quot;1. Vigorous health\n2. Incredible power\n3. Exceptional speed&quot;);</span>
+<span class="nc" id="L58">    String wish = input.readInput(player);</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        if(wish.equals(&quot;1&quot;)) {</span>
+<span class="nc" id="L60">            player.addMaxHp(20);</span>
+<span class="nc" id="L61">            System.out.println(&quot;\nA wave of vitality washes over your body, enhancing your resilience!\nMax HP: + 15\n&quot;);</span>
+<span class="nc" id="L62">            System.out.println(&quot;You sleep like a baby and wake up the next day feeling rejuvenated and ready to set out.&quot;);</span>
+<span class="nc" id="L63">            wishChoice=false;</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        } else if (wish.equals(&quot;2&quot;)) {</span>
+<span class="nc" id="L65">            player.addAttack(10);</span>
+<span class="nc" id="L66">            System.out.println(&quot;\nYou can feel the power surging inside!\nAttack: + 5\n&quot;);</span>
+<span class="nc" id="L67">            System.out.println(&quot;You eventually fall asleep. You wake up well rested and ready to set out.&quot;);</span>
+<span class="nc" id="L68">            wishChoice=false;</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        } else if (wish.equals(&quot;3&quot;)) {</span>
+<span class="nc" id="L70">            player.addSpeed(20);</span>
+<span class="nc" id="L71">                System.out.println(&quot;\nYou experience a burst of energy, feeling light on your feet!\nSpeed: + 10\n&quot;);</span>
+<span class="nc" id="L72">                System.out.println(&quot;At the break of dawn you waste no time and set out immediately.&quot;); </span>
+<span class="nc" id="L73">                wishChoice=false;</span>
+        }
+    }
+
+<span class="nc" id="L77">    gainEXP(player);</span>
+<span class="nc" id="L78">}        </span>
+
+private void noWish(Player player) {
+            
+<span class="nc" id="L82">    System.out.println(&quot;You decide to just admire the beautiful natural occurance of possible impending doom &quot; +</span>
+    &quot;and suddenly can't seem to get the 'impending doom'-part out of your mind.\nYou have trouble falling asleep.\nHP: - 5\n&quot;);
+<span class="nc" id="L84">        player.decreaseCurrentHp(5);</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        if (!player.isAlive()) {return;}</span>
+<span class="nc" id="L86">    System.out.println(&quot;You wake up at dawn of the next day and feel like shit. Despite that you know you have to &quot; + </span>
+    &quot;continue your journey.&quot;);
+
+<span class="nc" id="L89">    gainEXP(player);</span>
+
+
+<span class="nc" id="L92">}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
